@@ -1,0 +1,10 @@
+{
+   "mongodb": {
+      "username": "tuandan",
+      "password": "u0SR2ZubvGORwmnF",
+      "database": "webbandienthoai"
+   },
+   "jwt": {
+      "secret": "goK!pusp6ThEdURUtRenOwUhAsWUCLheBazl!uJLPlS8EbreWLdrupIwabRAsiBu"
+   }
+}

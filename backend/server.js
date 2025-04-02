@@ -1,43 +1,45 @@
+// D:\DaiHocHutechKhoa2021\41.NgoNguPhatTrienMoi\website_bandienthoai_nodejs_javascript_mongodb\backend\server.js
 const express = require("express");
+const bodyParser = require("body-parser");
+const DatabaseConnection = require("./src/database/database");
+const config = require("./config/setting.json"); // thêm dòng này
+const mongoose = require("mongoose"); // thêm dòng này
+const { seedDefaultRoles } = require("./src/models/role");
+
 const app = express();
 
-const swaggerJsDoc = require("swagger-jsdoc");
-const swaggerUi = require("swagger-ui-express");
-
-
-// 📝 Cấu hình Swagger
-const swaggerOptions = {
-    definition: {
-        openapi: "3.0.0",
-        info: {
-            title: "API Website Bán Điện Thoại",
-            version: "1.0.0",
-            description: "Tài liệu API sử dụng Swagger",
-            contact: {
-                name: "Admin",
-            },
-            servers: ["http://localhost:5000"],
-        },
-    },
-    apis: [__dirname + "/src/controllers/*.js"], // Đọc file API từ thư mục controllers
-};
-
-// Tạo Swagger Docs
-const swaggerDocs = swaggerJsDoc(swaggerOptions);
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
-
-
+// Middleware để xử lý dữ liệu JSON và form
 app.use(express.json());
-app.use(express.urlencoded({ extended: true })); // Hỗ trợ dữ liệu từ form
+app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
+// Kết nối tới MongoDB
+(async () => {
+    try {
+        const client = DatabaseConnection.getMongoClient();
+        await client.connect();
+        console.log("✅ Kết nối MongoDB thành công!");
 
-const connectDB = require("./config/database");
-connectDB();
+        // 👉 THÊM ĐOẠN NÀY
+        await mongoose.connect(client.s.url, {
+            dbName: config.mongodb.database
+        });
+        console.log("✅ Kết nối Mongoose thành công!");
 
-// Import controller
-var controller = require(__dirname + "/src/controllers");
+        // ✅ Tạo dữ liệu role mặc định
+        await seedDefaultRoles();
+
+        app.locals.dbClient = client;
+    } catch (error) {
+        console.error("❌ Kết nối MongoDB thất bại:", error);
+        process.exit(1);
+    }
+})();
+
+// Import các controller
+const controller = require("./src/controllers");
 app.use(controller);
-
 // Khởi động server backend
 var server = app.listen(5000, function() {
     console.log("✅ Mở http://localhost:5000 để kiểm tra API hoạt động.");

@@ -1,3 +1,4 @@
+//D:\DaiHocHutechKhoa2021\41.NgoNguPhatTrienMoi\website_bandienthoai_nodejs_javascript_mongodb\backend\src\models\product.js
 const mongoose = require('mongoose');
 
 const ProductSchema = new mongoose.Schema({
