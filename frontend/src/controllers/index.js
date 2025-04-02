@@ -1,3 +1,4 @@
+//D:\DaiHocHutechKhoa2021\41.NgoNguPhatTrienMoi\website_bandienthoai_nodejs_javascript_mongodb\frontend\src\controllers\index.js
 var express = require("express");
 var router = express.Router();
 
@@ -6,7 +7,7 @@ router.use("/", require(__dirname + "/productcontroller"));
 router.use("/", require(__dirname + "/blogcontroller"));
 router.use("/about", require(__dirname + "/aboutcontroller"));
 router.use("/lienhe", require(__dirname + "/lienhecontroller"));
-router.use("/", require(__dirname + "/loginregistercontroller"));
+router.use("/", require(__dirname + "/authenticatecontroller"));
 
 
 router.use("/", require(__dirname + "/admin/admincontroller"));

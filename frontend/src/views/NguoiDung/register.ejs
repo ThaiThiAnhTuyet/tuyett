@@ -57,25 +57,34 @@
                                     </p>
                                 </div>
                                 <div class="login-register-style">
-                                    <form action="#" method="post">
+                                    <form action="/register" method="post">
                                         <div class="login-register-input">
-                                            <input type="text" name="user-name" placeholder="Username">
+                                            <input type="text" name="name" placeholder="Tên người dùng" required>
                                         </div>
+
                                         <div class="login-register-input">
-                                            <input type="text" name="user-name" placeholder="E-mail address">
+                                            <input type="number" name="age" placeholder="Tuổi" required>
                                         </div>
+
                                         <div class="login-register-input">
-                                            <input type="password" name="user-password" placeholder="Password">
+                                            <input type="password" name="password" placeholder="Mật khẩu" required>
                                         </div>
                                         <div class="login-register-paragraph">
-                                            <p>Your personal data will be used to support your experience throughout
-                                                this website, to manage access to your account, and for other purposes
-                                                described in our <a href="login-register.html">privacy policy.</a></p>
+                                            <p>Dữ liệu của bạn sẽ được sử dụng để quản lý tài khoản và các mục đích khác
+                                                theo <a href="#">chính sách bảo
+                                                    mật</a>.</p>
                                         </div>
+
                                         <div class="btn-register">
-                                            <a class="btn-register-now btn btn-primary w-100"
-                                                href="account.html">Register</a>
+                                            <button type="submit" class="btn-register-now btn btn-primary w-100">Đăng
+                                                ký</button>
                                         </div>
+
+                                        <% if (error) { %>
+                                            <p class="text-danger mt-3 text-center">
+                                                <%= error %>
+                                            </p>
+                                            <% } %>
                                     </form>
                                     <div class="register-benefits">
                                         <h4>Sign up today and you will be able to :</h4>

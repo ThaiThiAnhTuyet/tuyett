@@ -9,8 +9,6 @@ router.use("/api/product", require(__dirname + "/api/productcontroller"));
 router.use("/api/blog", require(__dirname + "/api/blogcontroller"));
 router.use("/api/order", require(__dirname + "/api/ordercontroller"));
 
-
-
 router.get("/", function(req, res) {
     res.render("index.ejs");
 });
