@@ -7,7 +7,7 @@ const ProductService = require("../../services/productService");
 const productService = new ProductService();
 
 // ✅ GET: Lấy tất cả sản phẩm
-router.get("/product-list", verifyToken, async (req, res) => {
+router.get("/product-list", async (req, res) => {
     try {
         const products = await productService.getAll();
         res.json({ status: true, data: products });

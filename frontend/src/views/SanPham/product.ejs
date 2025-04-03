@@ -248,575 +248,487 @@
                             </div>
                             <!--== End Product Top Bar Area Wrapper ==-->
                             <div class="tab-content" id="nav-tabContent">
-                                <div class="tab-pane fade show active" id="column-three" role="tabpanel"
-                                    aria-labelledby="column-three-tab">
-                                    <div class="row mb-n6">
-                                        <div class="col-sm-6 col-lg-6 col-xl-4 mb-6">
-                                            <!--== Start Product Item ==-->
-                                            <div class="product-item">
-                                                <a class="product-item-thumb" href="shop-single-product.html">
-                                                    <img src="/static/images/shop/1.jpg" width="270" height="264"
-                                                        alt="Image-HasTech">
-                                                </a>
-                                                <span class="badges">-10%</span>
-                                                <div class="product-item-action">
-                                                    <button type="button" class="product-action-btn action-btn-wishlist"
-                                                        data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
-                                                        <i class="icon-heart"></i>
-                                                    </button>
-                                                    <button type="button" class="product-action-btn action-btn-compare"
-                                                        data-bs-toggle="modal" data-bs-target="#action-CompareModal">
-                                                        <i class="icon-shuffle"></i>
-                                                    </button>
-                                                    <button type="button"
-                                                        class="product-action-btn action-btn-quick-view"
-                                                        data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
-                                                        <i class="icon-magnifier"></i>
-                                                    </button>
+                                <% products.forEach(product=> { %>
+                                    <div class="col-sm-6 col-lg-6 col-xl-4 mb-6">
+                                        <div class="product-item">
+                                            <a class="product-item-thumb" href="/productdetails?id=<%= product.id %>">
+                                                <img src="<%= product.images[0] || '/static/images/default-product.jpg' %>"
+                                                    width="270" height="264" alt="<%= product.name %>">
+                                            </a>
+                                            <div class="product-item-action">
+                                                <button type="button" class="product-action-btn action-btn-wishlist"
+                                                    data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
+                                                    <i class="icon-heart"></i>
+                                                </button>
+                                                <button type="button" class="product-action-btn action-btn-compare"
+                                                    data-bs-toggle="modal" data-bs-target="#action-CompareModal">
+                                                    <i class="icon-shuffle"></i>
+                                                </button>
+                                                <button type="button" class="product-action-btn action-btn-quick-view"
+                                                    data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
+                                                    <i class="icon-magnifier"></i>
+                                                </button>
+                                            </div>
+                                            <div class="product-item-info text-center pb-6">
+                                                <h5 class="product-item-title mb-2">
+                                                    <a href="/productdetails?id=<%= product.id %>">
+                                                        <%= product.name %>
+                                                    </a>
+                                                </h5>
+                                                <div class="product-item-price">$<%= product.price %>
                                                 </div>
-                                                <div class="product-item-info text-center pb-6">
-                                                    <h5 class="product-item-title mb-2"><a
-                                                            href="shop-single-product.html">Game Triger Finger New
-                                                            Insulated PH-X</a></h5>
-                                                    <div class="product-item-price">$160.00 - <span
-                                                            class="price-old">$260.00</span></div>
-                                                    <div class="product-item-review-icon">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                                <div class="product-item-review-icon">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-half-o"></i>
+                                                    <i class="fa fa-star-o"></i>
                                                 </div>
                                             </div>
-                                            <!--== End Product Item ==-->
-                                        </div>
-                                        <div class="col-sm-6 col-lg-6 col-xl-4 mb-6">
-                                            <!--== Start Product Item ==-->
-                                            <div class="product-item">
-                                                <a class="product-item-thumb" href="shop-single-product.html">
-                                                    <img src="/static/images/shop/14.jpg" width="270" height="264"
-                                                        alt="Image-HasTech">
-                                                </a>
-                                                <span class="badges">-10%</span>
-                                                <div class="product-item-action">
-                                                    <button type="button" class="product-action-btn action-btn-wishlist"
-                                                        data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
-                                                        <i class="icon-heart"></i>
-                                                    </button>
-                                                    <button type="button" class="product-action-btn action-btn-compare"
-                                                        data-bs-toggle="modal" data-bs-target="#action-CompareModal">
-                                                        <i class="icon-shuffle"></i>
-                                                    </button>
-                                                    <button type="button"
-                                                        class="product-action-btn action-btn-quick-view"
-                                                        data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
-                                                        <i class="icon-magnifier"></i>
-                                                    </button>
-                                                </div>
-                                                <div class="product-item-info text-center pb-6">
-                                                    <h5 class="product-item-title mb-2"><a
-                                                            href="shop-single-product.html">Game Triger Finger New
-                                                            Insulated PH-X</a></h5>
-                                                    <div class="product-item-price">$160.00 - <span
-                                                            class="price-old">$260.00</span></div>
-                                                    <div class="product-item-review-icon">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!--== End Product Item ==-->
-                                        </div>
-                                        <div class="col-sm-6 col-lg-6 col-xl-4 mb-6">
-                                            <!--== Start Product Item ==-->
-                                            <div class="product-item">
-                                                <a class="product-item-thumb" href="shop-single-product.html">
-                                                    <img src="/static/images/shop/15.jpg" width="270" height="264"
-                                                        alt="Image-HasTech">
-                                                </a>
-                                                <span class="badges bg-theme3">New</span>
-                                                <div class="product-item-action">
-                                                    <button type="button" class="product-action-btn action-btn-wishlist"
-                                                        data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
-                                                        <i class="icon-heart"></i>
-                                                    </button>
-                                                    <button type="button" class="product-action-btn action-btn-compare"
-                                                        data-bs-toggle="modal" data-bs-target="#action-CompareModal">
-                                                        <i class="icon-shuffle"></i>
-                                                    </button>
-                                                    <button type="button"
-                                                        class="product-action-btn action-btn-quick-view"
-                                                        data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
-                                                        <i class="icon-magnifier"></i>
-                                                    </button>
-                                                </div>
-                                                <div class="product-item-info text-center pb-6">
-                                                    <h5 class="product-item-title mb-2"><a
-                                                            href="shop-single-product.html">Android Television Super New
-                                                            DGT -256</a></h5>
-                                                    <div class="product-item-price">$298.00</div>
-                                                    <div class="product-item-review-icon">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!--== End Product Item ==-->
-                                        </div>
-                                        <div class="col-12">
-                                            <nav class="pagination-area mt-6 mb-6">
-                                                <ul class="page-numbers justify-content-center">
-                                                    <li>
-                                                        <a class="page-number active" href="shop.html">1</a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="page-number" href="shop.html">2</a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="page-number next" href="shop.html">
-                                                            <i class="icon-arrow-right"></i>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </nav>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="tab-pane fade product-list-items" id="nav-list" role="tabpanel"
-                                    aria-labelledby="nav-list-tab">
-                                    <div class="row row-cols-1 row-cols-sm-2 mb-n8">
-                                        <div class="col mb-8">
-                                            <!--== Start Product Item ==-->
-                                            <div class="product-list-item">
-                                                <a class="product-list-thumb" href="shop-single-product.html">
-                                                    <img src="/static/images/shop/p7.jpg" width="107" height="107"
-                                                        alt="Image-HasTech">
-                                                </a>
-                                                <div class="product-list-info">
-                                                    <h5 class="product-list-title"><a
-                                                            href="shop-single-product.html">D-Phone Android Latest UI
-                                                            New XP</a></h5>
-                                                    <div class="info-bottom">
-                                                        <div class="product-list-price">$256.00</div>
-                                                        <button type="button" class="info-btn-cart"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#action-CartAddModal"><i
-                                                                class="icon-handbag"></i></button>
-                                                        <div class="product-list-review-icon">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!--== End Product Item ==-->
-                                        </div>
-                                        <div class="col mb-8">
-                                            <!--== Start Product Item ==-->
-                                            <div class="product-list-item border-0">
-                                                <a class="product-list-thumb" href="shop-single-product.html">
-                                                    <img src="/static/images/shop/p8.jpg" width="107" height="107"
-                                                        alt="Image-HasTech">
-                                                </a>
-                                                <div class="product-list-info">
-                                                    <h5 class="product-list-title"><a
-                                                            href="shop-single-product.html">Digital Lens Camera
-                                                            HYU-259Xl</a></h5>
-                                                    <div class="info-bottom">
-                                                        <div class="product-list-price">$256.00</div>
-                                                        <button type="button" class="info-btn-cart"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#action-CartAddModal"><i
-                                                                class="icon-handbag"></i></button>
-                                                        <div class="product-list-review-icon">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!--== End Product Item ==-->
-                                        </div>
-                                        <div class="col mb-8">
-                                            <!--== Start Product Item ==-->
-                                            <div class="product-list-item">
-                                                <a class="product-list-thumb" href="shop-single-product.html">
-                                                    <img src="/static/images/shop/p9.jpg" width="107" height="107"
-                                                        alt="Image-HasTech">
-                                                </a>
-                                                <div class="product-list-info">
-                                                    <h5 class="product-list-title"><a
-                                                            href="shop-single-product.html">Vivi Movi Box Black HK With
-                                                            Eye Protect</a></h5>
-                                                    <div class="info-bottom">
-                                                        <div class="product-list-price">$256.00</div>
-                                                        <button type="button" class="info-btn-cart"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#action-CartAddModal"><i
-                                                                class="icon-handbag"></i></button>
-                                                        <div class="product-list-review-icon">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!--== End Product Item ==-->
-                                        </div>
-                                        <div class="col mb-8">
-                                            <!--== Start Product Item ==-->
-                                            <div class="product-list-item border-0">
-                                                <a class="product-list-thumb" href="shop-single-product.html">
-                                                    <img src="/static/images/shop/p10.jpg" width="107" height="107"
-                                                        alt="Image-HasTech">
-                                                </a>
-                                                <div class="product-list-info">
-                                                    <h5 class="product-list-title"><a
-                                                            href="shop-single-product.html">Bluetooth Speaker Without
-                                                            Cable</a></h5>
-                                                    <div class="info-bottom">
-                                                        <div class="product-list-price">$256.00</div>
-                                                        <button type="button" class="info-btn-cart"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#action-CartAddModal"><i
-                                                                class="icon-handbag"></i></button>
-                                                        <div class="product-list-review-icon">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!--== End Product Item ==-->
-                                        </div>
-                                        <div class="col mb-8">
-                                            <!--== Start Product Item ==-->
-                                            <div class="product-list-item">
-                                                <a class="product-list-thumb" href="shop-single-product.html">
-                                                    <img src="/static/images/shop/p11.jpg" width="107" height="107"
-                                                        alt="Image-HasTech">
-                                                </a>
-                                                <div class="product-list-info">
-                                                    <h5 class="product-list-title"><a
-                                                            href="shop-single-product.html">Headphone Supersonic New
-                                                            Adi-25</a></h5>
-                                                    <div class="info-bottom">
-                                                        <div class="product-list-price">$256.00</div>
-                                                        <button type="button" class="info-btn-cart"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#action-CartAddModal"><i
-                                                                class="icon-handbag"></i></button>
-                                                        <div class="product-list-review-icon">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!--== End Product Item ==-->
-                                        </div>
-                                        <div class="col mb-8">
-                                            <!--== Start Product Item ==-->
-                                            <div class="product-list-item border-0">
-                                                <a class="product-list-thumb" href="shop-single-product.html">
-                                                    <img src="/static/images/shop/p12.jpg" width="107" height="107"
-                                                        alt="Image-HasTech">
-                                                </a>
-                                                <div class="product-list-info">
-                                                    <h5 class="product-list-title"><a
-                                                            href="shop-single-product.html">Game Triger Finger New
-                                                            Insulated PH-X</a></h5>
-                                                    <div class="info-bottom">
-                                                        <div class="product-list-price">$256.00</div>
-                                                        <button type="button" class="info-btn-cart"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#action-CartAddModal"><i
-                                                                class="icon-handbag"></i></button>
-                                                        <div class="product-list-review-icon">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!--== End Product Item ==-->
-                                        </div>
-                                        <div class="col mb-8">
-                                            <!--== Start Product Item ==-->
-                                            <div class="product-list-item">
-                                                <a class="product-list-thumb" href="shop-single-product.html">
-                                                    <img src="/static/images/shop/p13.jpg" width="107" height="107"
-                                                        alt="Image-HasTech">
-                                                </a>
-                                                <div class="product-list-info">
-                                                    <h5 class="product-list-title"><a
-                                                            href="shop-single-product.html">Watch Android Latest UI New
-                                                            SM</a></h5>
-                                                    <div class="info-bottom">
-                                                        <div class="product-list-price">$256.00</div>
-                                                        <button type="button" class="info-btn-cart"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#action-CartAddModal"><i
-                                                                class="icon-handbag"></i></button>
-                                                        <div class="product-list-review-icon">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!--== End Product Item ==-->
-                                        </div>
-                                        <div class="col mb-8">
-                                            <!--== Start Product Item ==-->
-                                            <div class="product-list-item border-0">
-                                                <a class="product-list-thumb" href="shop-single-product.html">
-                                                    <img src="/static/images/shop/p7.jpg" width="107" height="107"
-                                                        alt="Image-HasTech">
-                                                </a>
-                                                <div class="product-list-info">
-                                                    <h5 class="product-list-title"><a
-                                                            href="shop-single-product.html">D-Phone Android Latest UI
-                                                            New XP</a></h5>
-                                                    <div class="info-bottom">
-                                                        <div class="product-list-price">$256.00</div>
-                                                        <button type="button" class="info-btn-cart"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#action-CartAddModal"><i
-                                                                class="icon-handbag"></i></button>
-                                                        <div class="product-list-review-icon">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!--== End Product Item ==-->
-                                        </div>
-                                        <div class="col mb-8">
-                                            <!--== Start Product Item ==-->
-                                            <div class="product-list-item">
-                                                <a class="product-list-thumb" href="shop-single-product.html">
-                                                    <img src="/static/images/shop/p8.jpg" width="107" height="107"
-                                                        alt="Image-HasTech">
-                                                </a>
-                                                <div class="product-list-info">
-                                                    <h5 class="product-list-title"><a
-                                                            href="shop-single-product.html">Digital Lens Camera
-                                                            HYU-259Xl</a></h5>
-                                                    <div class="info-bottom">
-                                                        <div class="product-list-price">$256.00</div>
-                                                        <button type="button" class="info-btn-cart"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#action-CartAddModal"><i
-                                                                class="icon-handbag"></i></button>
-                                                        <div class="product-list-review-icon">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!--== End Product Item ==-->
-                                        </div>
-                                        <div class="col mb-8">
-                                            <!--== Start Product Item ==-->
-                                            <div class="product-list-item border-0">
-                                                <a class="product-list-thumb" href="shop-single-product.html">
-                                                    <img src="/static/images/shop/p9.jpg" width="107" height="107"
-                                                        alt="Image-HasTech">
-                                                </a>
-                                                <div class="product-list-info">
-                                                    <h5 class="product-list-title"><a
-                                                            href="shop-single-product.html">Vivi Movi Box Black HK With
-                                                            Eye Protect</a></h5>
-                                                    <div class="info-bottom">
-                                                        <div class="product-list-price">$256.00</div>
-                                                        <button type="button" class="info-btn-cart"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#action-CartAddModal"><i
-                                                                class="icon-handbag"></i></button>
-                                                        <div class="product-list-review-icon">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!--== End Product Item ==-->
-                                        </div>
-                                        <div class="col mb-8">
-                                            <!--== Start Product Item ==-->
-                                            <div class="product-list-item">
-                                                <a class="product-list-thumb" href="shop-single-product.html">
-                                                    <img src="/static/images/shop/p10.jpg" width="107" height="107"
-                                                        alt="Image-HasTech">
-                                                </a>
-                                                <div class="product-list-info">
-                                                    <h5 class="product-list-title"><a
-                                                            href="shop-single-product.html">Bluetooth Speaker Without
-                                                            Cable</a></h5>
-                                                    <div class="info-bottom">
-                                                        <div class="product-list-price">$256.00</div>
-                                                        <button type="button" class="info-btn-cart"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#action-CartAddModal"><i
-                                                                class="icon-handbag"></i></button>
-                                                        <div class="product-list-review-icon">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!--== End Product Item ==-->
-                                        </div>
-                                        <div class="col mb-8">
-                                            <!--== Start Product Item ==-->
-                                            <div class="product-list-item border-0">
-                                                <a class="product-list-thumb" href="shop-single-product.html">
-                                                    <img src="/static/images/shop/p11.jpg" width="107" height="107"
-                                                        alt="Image-HasTech">
-                                                </a>
-                                                <div class="product-list-info">
-                                                    <h5 class="product-list-title"><a
-                                                            href="shop-single-product.html">Headphone Supersonic New
-                                                            Adi-25</a></h5>
-                                                    <div class="info-bottom">
-                                                        <div class="product-list-price">$256.00</div>
-                                                        <button type="button" class="info-btn-cart"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#action-CartAddModal"><i
-                                                                class="icon-handbag"></i></button>
-                                                        <div class="product-list-review-icon">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!--== End Product Item ==-->
-                                        </div>
-                                        <div class="col mb-8">
-                                            <!--== Start Product Item ==-->
-                                            <div class="product-list-item">
-                                                <a class="product-list-thumb" href="shop-single-product.html">
-                                                    <img src="/static/images/shop/p12.jpg" width="107" height="107"
-                                                        alt="Image-HasTech">
-                                                </a>
-                                                <div class="product-list-info">
-                                                    <h5 class="product-list-title"><a
-                                                            href="shop-single-product.html">Game Triger Finger New
-                                                            Insulated PH-X</a></h5>
-                                                    <div class="info-bottom">
-                                                        <div class="product-list-price">$256.00</div>
-                                                        <button type="button" class="info-btn-cart"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#action-CartAddModal"><i
-                                                                class="icon-handbag"></i></button>
-                                                        <div class="product-list-review-icon">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!--== End Product Item ==-->
-                                        </div>
-                                        <div class="col mb-8">
-                                            <!--== Start Product Item ==-->
-                                            <div class="product-list-item border-0">
-                                                <a class="product-list-thumb" href="shop-single-product.html">
-                                                    <img src="/static/images/shop/p13.jpg" width="107" height="107"
-                                                        alt="Image-HasTech">
-                                                </a>
-                                                <div class="product-list-info">
-                                                    <h5 class="product-list-title"><a
-                                                            href="shop-single-product.html">Watch Android Latest UI New
-                                                            SM</a></h5>
-                                                    <div class="info-bottom">
-                                                        <div class="product-list-price">$256.00</div>
-                                                        <button type="button" class="info-btn-cart"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#action-CartAddModal"><i
-                                                                class="icon-handbag"></i></button>
-                                                        <div class="product-list-review-icon">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!--== End Product Item ==-->
-                                        </div>
-                                        <div class="col-12">
-                                            <nav class="pagination-area mt-6 mb-6">
-                                                <ul class="page-numbers justify-content-center">
-                                                    <li>
-                                                        <a class="page-number active" href="shop.html">1</a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="page-number" href="shop.html">2</a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="page-number next" href="shop.html">
-                                                            <i class="icon-arrow-right"></i>
+                                    <% }) %>
+
+                                        <div class="tab-pane fade product-list-items" id="nav-list" role="tabpanel"
+                                            aria-labelledby="nav-list-tab">
+                                            <div class="row row-cols-1 row-cols-sm-2 mb-n8">
+                                                <div class="col mb-8">
+                                                    <!--== Start Product Item ==-->
+                                                    <div class="product-list-item">
+                                                        <a class="product-list-thumb" href="shop-single-product.html">
+                                                            <img src="/static/images/shop/p7.jpg" width="107"
+                                                                height="107" alt="Image-HasTech">
                                                         </a>
-                                                    </li>
-                                                </ul>
-                                            </nav>
+                                                        <div class="product-list-info">
+                                                            <h5 class="product-list-title"><a
+                                                                    href="shop-single-product.html">D-Phone Android
+                                                                    Latest UI
+                                                                    New XP</a></h5>
+                                                            <div class="info-bottom">
+                                                                <div class="product-list-price">$256.00</div>
+                                                                <button type="button" class="info-btn-cart"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#action-CartAddModal"><i
+                                                                        class="icon-handbag"></i></button>
+                                                                <div class="product-list-review-icon">
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--== End Product Item ==-->
+                                                </div>
+                                                <div class="col mb-8">
+                                                    <!--== Start Product Item ==-->
+                                                    <div class="product-list-item border-0">
+                                                        <a class="product-list-thumb" href="shop-single-product.html">
+                                                            <img src="/static/images/shop/p8.jpg" width="107"
+                                                                height="107" alt="Image-HasTech">
+                                                        </a>
+                                                        <div class="product-list-info">
+                                                            <h5 class="product-list-title"><a
+                                                                    href="shop-single-product.html">Digital Lens Camera
+                                                                    HYU-259Xl</a></h5>
+                                                            <div class="info-bottom">
+                                                                <div class="product-list-price">$256.00</div>
+                                                                <button type="button" class="info-btn-cart"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#action-CartAddModal"><i
+                                                                        class="icon-handbag"></i></button>
+                                                                <div class="product-list-review-icon">
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--== End Product Item ==-->
+                                                </div>
+                                                <div class="col mb-8">
+                                                    <!--== Start Product Item ==-->
+                                                    <div class="product-list-item">
+                                                        <a class="product-list-thumb" href="shop-single-product.html">
+                                                            <img src="/static/images/shop/p9.jpg" width="107"
+                                                                height="107" alt="Image-HasTech">
+                                                        </a>
+                                                        <div class="product-list-info">
+                                                            <h5 class="product-list-title"><a
+                                                                    href="shop-single-product.html">Vivi Movi Box Black
+                                                                    HK With
+                                                                    Eye Protect</a></h5>
+                                                            <div class="info-bottom">
+                                                                <div class="product-list-price">$256.00</div>
+                                                                <button type="button" class="info-btn-cart"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#action-CartAddModal"><i
+                                                                        class="icon-handbag"></i></button>
+                                                                <div class="product-list-review-icon">
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--== End Product Item ==-->
+                                                </div>
+                                                <div class="col mb-8">
+                                                    <!--== Start Product Item ==-->
+                                                    <div class="product-list-item border-0">
+                                                        <a class="product-list-thumb" href="shop-single-product.html">
+                                                            <img src="/static/images/shop/p10.jpg" width="107"
+                                                                height="107" alt="Image-HasTech">
+                                                        </a>
+                                                        <div class="product-list-info">
+                                                            <h5 class="product-list-title"><a
+                                                                    href="shop-single-product.html">Bluetooth Speaker
+                                                                    Without
+                                                                    Cable</a></h5>
+                                                            <div class="info-bottom">
+                                                                <div class="product-list-price">$256.00</div>
+                                                                <button type="button" class="info-btn-cart"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#action-CartAddModal"><i
+                                                                        class="icon-handbag"></i></button>
+                                                                <div class="product-list-review-icon">
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--== End Product Item ==-->
+                                                </div>
+                                                <div class="col mb-8">
+                                                    <!--== Start Product Item ==-->
+                                                    <div class="product-list-item">
+                                                        <a class="product-list-thumb" href="shop-single-product.html">
+                                                            <img src="/static/images/shop/p11.jpg" width="107"
+                                                                height="107" alt="Image-HasTech">
+                                                        </a>
+                                                        <div class="product-list-info">
+                                                            <h5 class="product-list-title"><a
+                                                                    href="shop-single-product.html">Headphone Supersonic
+                                                                    New
+                                                                    Adi-25</a></h5>
+                                                            <div class="info-bottom">
+                                                                <div class="product-list-price">$256.00</div>
+                                                                <button type="button" class="info-btn-cart"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#action-CartAddModal"><i
+                                                                        class="icon-handbag"></i></button>
+                                                                <div class="product-list-review-icon">
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--== End Product Item ==-->
+                                                </div>
+                                                <div class="col mb-8">
+                                                    <!--== Start Product Item ==-->
+                                                    <div class="product-list-item border-0">
+                                                        <a class="product-list-thumb" href="shop-single-product.html">
+                                                            <img src="/static/images/shop/p12.jpg" width="107"
+                                                                height="107" alt="Image-HasTech">
+                                                        </a>
+                                                        <div class="product-list-info">
+                                                            <h5 class="product-list-title"><a
+                                                                    href="shop-single-product.html">Game Triger Finger
+                                                                    New
+                                                                    Insulated PH-X</a></h5>
+                                                            <div class="info-bottom">
+                                                                <div class="product-list-price">$256.00</div>
+                                                                <button type="button" class="info-btn-cart"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#action-CartAddModal"><i
+                                                                        class="icon-handbag"></i></button>
+                                                                <div class="product-list-review-icon">
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--== End Product Item ==-->
+                                                </div>
+                                                <div class="col mb-8">
+                                                    <!--== Start Product Item ==-->
+                                                    <div class="product-list-item">
+                                                        <a class="product-list-thumb" href="shop-single-product.html">
+                                                            <img src="/static/images/shop/p13.jpg" width="107"
+                                                                height="107" alt="Image-HasTech">
+                                                        </a>
+                                                        <div class="product-list-info">
+                                                            <h5 class="product-list-title"><a
+                                                                    href="shop-single-product.html">Watch Android Latest
+                                                                    UI New
+                                                                    SM</a></h5>
+                                                            <div class="info-bottom">
+                                                                <div class="product-list-price">$256.00</div>
+                                                                <button type="button" class="info-btn-cart"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#action-CartAddModal"><i
+                                                                        class="icon-handbag"></i></button>
+                                                                <div class="product-list-review-icon">
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--== End Product Item ==-->
+                                                </div>
+                                                <div class="col mb-8">
+                                                    <!--== Start Product Item ==-->
+                                                    <div class="product-list-item border-0">
+                                                        <a class="product-list-thumb" href="shop-single-product.html">
+                                                            <img src="/static/images/shop/p7.jpg" width="107"
+                                                                height="107" alt="Image-HasTech">
+                                                        </a>
+                                                        <div class="product-list-info">
+                                                            <h5 class="product-list-title"><a
+                                                                    href="shop-single-product.html">D-Phone Android
+                                                                    Latest UI
+                                                                    New XP</a></h5>
+                                                            <div class="info-bottom">
+                                                                <div class="product-list-price">$256.00</div>
+                                                                <button type="button" class="info-btn-cart"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#action-CartAddModal"><i
+                                                                        class="icon-handbag"></i></button>
+                                                                <div class="product-list-review-icon">
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--== End Product Item ==-->
+                                                </div>
+                                                <div class="col mb-8">
+                                                    <!--== Start Product Item ==-->
+                                                    <div class="product-list-item">
+                                                        <a class="product-list-thumb" href="shop-single-product.html">
+                                                            <img src="/static/images/shop/p8.jpg" width="107"
+                                                                height="107" alt="Image-HasTech">
+                                                        </a>
+                                                        <div class="product-list-info">
+                                                            <h5 class="product-list-title"><a
+                                                                    href="shop-single-product.html">Digital Lens Camera
+                                                                    HYU-259Xl</a></h5>
+                                                            <div class="info-bottom">
+                                                                <div class="product-list-price">$256.00</div>
+                                                                <button type="button" class="info-btn-cart"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#action-CartAddModal"><i
+                                                                        class="icon-handbag"></i></button>
+                                                                <div class="product-list-review-icon">
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--== End Product Item ==-->
+                                                </div>
+                                                <div class="col mb-8">
+                                                    <!--== Start Product Item ==-->
+                                                    <div class="product-list-item border-0">
+                                                        <a class="product-list-thumb" href="shop-single-product.html">
+                                                            <img src="/static/images/shop/p9.jpg" width="107"
+                                                                height="107" alt="Image-HasTech">
+                                                        </a>
+                                                        <div class="product-list-info">
+                                                            <h5 class="product-list-title"><a
+                                                                    href="shop-single-product.html">Vivi Movi Box Black
+                                                                    HK With
+                                                                    Eye Protect</a></h5>
+                                                            <div class="info-bottom">
+                                                                <div class="product-list-price">$256.00</div>
+                                                                <button type="button" class="info-btn-cart"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#action-CartAddModal"><i
+                                                                        class="icon-handbag"></i></button>
+                                                                <div class="product-list-review-icon">
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--== End Product Item ==-->
+                                                </div>
+                                                <div class="col mb-8">
+                                                    <!--== Start Product Item ==-->
+                                                    <div class="product-list-item">
+                                                        <a class="product-list-thumb" href="shop-single-product.html">
+                                                            <img src="/static/images/shop/p10.jpg" width="107"
+                                                                height="107" alt="Image-HasTech">
+                                                        </a>
+                                                        <div class="product-list-info">
+                                                            <h5 class="product-list-title"><a
+                                                                    href="shop-single-product.html">Bluetooth Speaker
+                                                                    Without
+                                                                    Cable</a></h5>
+                                                            <div class="info-bottom">
+                                                                <div class="product-list-price">$256.00</div>
+                                                                <button type="button" class="info-btn-cart"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#action-CartAddModal"><i
+                                                                        class="icon-handbag"></i></button>
+                                                                <div class="product-list-review-icon">
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--== End Product Item ==-->
+                                                </div>
+                                                <div class="col mb-8">
+                                                    <!--== Start Product Item ==-->
+                                                    <div class="product-list-item border-0">
+                                                        <a class="product-list-thumb" href="shop-single-product.html">
+                                                            <img src="/static/images/shop/p11.jpg" width="107"
+                                                                height="107" alt="Image-HasTech">
+                                                        </a>
+                                                        <div class="product-list-info">
+                                                            <h5 class="product-list-title"><a
+                                                                    href="shop-single-product.html">Headphone Supersonic
+                                                                    New
+                                                                    Adi-25</a></h5>
+                                                            <div class="info-bottom">
+                                                                <div class="product-list-price">$256.00</div>
+                                                                <button type="button" class="info-btn-cart"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#action-CartAddModal"><i
+                                                                        class="icon-handbag"></i></button>
+                                                                <div class="product-list-review-icon">
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--== End Product Item ==-->
+                                                </div>
+                                                <div class="col mb-8">
+                                                    <!--== Start Product Item ==-->
+                                                    <div class="product-list-item">
+                                                        <a class="product-list-thumb" href="shop-single-product.html">
+                                                            <img src="/static/images/shop/p12.jpg" width="107"
+                                                                height="107" alt="Image-HasTech">
+                                                        </a>
+                                                        <div class="product-list-info">
+                                                            <h5 class="product-list-title"><a
+                                                                    href="shop-single-product.html">Game Triger Finger
+                                                                    New
+                                                                    Insulated PH-X</a></h5>
+                                                            <div class="info-bottom">
+                                                                <div class="product-list-price">$256.00</div>
+                                                                <button type="button" class="info-btn-cart"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#action-CartAddModal"><i
+                                                                        class="icon-handbag"></i></button>
+                                                                <div class="product-list-review-icon">
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--== End Product Item ==-->
+                                                </div>
+                                                <div class="col mb-8">
+                                                    <!--== Start Product Item ==-->
+                                                    <div class="product-list-item border-0">
+                                                        <a class="product-list-thumb" href="shop-single-product.html">
+                                                            <img src="/static/images/shop/p13.jpg" width="107"
+                                                                height="107" alt="Image-HasTech">
+                                                        </a>
+                                                        <div class="product-list-info">
+                                                            <h5 class="product-list-title"><a
+                                                                    href="shop-single-product.html">Watch Android Latest
+                                                                    UI New
+                                                                    SM</a></h5>
+                                                            <div class="info-bottom">
+                                                                <div class="product-list-price">$256.00</div>
+                                                                <button type="button" class="info-btn-cart"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#action-CartAddModal"><i
+                                                                        class="icon-handbag"></i></button>
+                                                                <div class="product-list-review-icon">
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--== End Product Item ==-->
+                                                </div>
+                                                <div class="col-12">
+                                                    <nav class="pagination-area mt-6 mb-6">
+                                                        <ul class="page-numbers justify-content-center">
+                                                            <li>
+                                                                <a class="page-number active" href="shop.html">1</a>
+                                                            </li>
+                                                            <li>
+                                                                <a class="page-number" href="shop.html">2</a>
+                                                            </li>
+                                                            <li>
+                                                                <a class="page-number next" href="shop.html">
+                                                                    <i class="icon-arrow-right"></i>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </nav>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                         <div class="col-lg-4 col-xl-3">
