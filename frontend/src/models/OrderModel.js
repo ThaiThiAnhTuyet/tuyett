@@ -1,3 +1,4 @@
+// D:\DaiHocHutechKhoa2021\41.NgoNguPhatTrienMoi\website_bandienthoai_nodejs_javascript_mongodb\frontend\src\models\OrderModel.js
 class OrderModel {
     constructor(data) {
         this.id = data._id;
