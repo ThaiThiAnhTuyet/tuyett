@@ -2,43 +2,60 @@ const express = require("express");
 const router = express.Router();
 const axios = require("axios");
 const ProductModel = require("../models/ProductModel");
+const CategoryModel = require("../models/CategoryModel");
 
 // Route hiển thị danh sách sản phẩm
 router.get("/product", async (req, res) => {
     try {
-        // Gọi API để lấy danh sách sản phẩm
-        const response = await axios.get("http://localhost:5000/api/product/product-list");
-        
-        // Xử lý dữ liệu về dạng ProductModel
-        const products = response.data?.data?.map(item => new ProductModel(item)) || [];
+        const categoryId = req.query.category;
 
-        // Debug xem có dữ liệu không
-        console.log("✅ Số sản phẩm lấy được:", products.length);
+        const productApiUrl = categoryId
+            ? `http://localhost:56804/api/product/product-list?category=${categoryId}`
+            : `http://localhost:56804/api/product/product-list`;
 
-        // Render ra view và truyền dữ liệu
-        res.render("SanPham/product", { products });
+        const [productRes, categoryRes] = await Promise.all([
+            axios.get(productApiUrl),
+            axios.get("http://localhost:5000/api/category/category-list")
+        ]);
 
-    } catch (err) {
-        console.error("❌ Lỗi khi lấy sản phẩm từ API:", err.message);
+        const products = productRes.data?.data?.map(item => new ProductModel(item)) || [];
+        const categories = categoryRes.data?.data?.map(item => new CategoryModel(item)) || [];
 
         res.render("SanPham/product", {
+            products,
+            categories,
+            selectedCategory: categoryId || "",
+            user: req.session.user,user: req.session.user
+        });
+
+    } catch (err) {
+        console.error("❌ Lỗi khi lấy dữ liệu:", err.message);
+        res.render("SanPham/product", {
             products: [],
-            error: "Không thể hiển thị sản phẩm. Vui lòng thử lại sau."
+            categories: [],
+            error: "Không thể hiển thị sản phẩm.",
+            selectedCategory: ""
         });
     }
 });
 
 // Các route khác
-router.get("/productdetails", (req, res) => {
-    res.render("SanPham/productdetails.ejs");
+router.get("/productdetails/:id", async (req, res) => {
+    const productId = req.params.id;
+    try {
+        const productRes = await axios.get(`http://localhost:5000/api/product/product-detail?id=${productId}`);
+        const productData = productRes.data?.data;
+        const product = new ProductModel(productData);
+
+        res.render("SanPham/productdetails", { product, user: req.session.user });
+    } catch (err) {
+        console.error("❌ Lỗi lấy chi tiết sản phẩm:", err.message);
+        res.render("SanPham/productdetails", {
+            product: null,
+            error: "Không thể hiển thị chi tiết sản phẩm."
+        });
+    }
 });
 
-router.get("/shopcart", (req, res) => {
-    res.render("SanPham/shopcart.ejs");
-});
-
-router.get("/shopwishlist", (req, res) => {
-    res.render("SanPham/shopwishlist.ejs");
-});
 
 module.exports = router;

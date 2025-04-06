@@ -9,7 +9,15 @@ const productService = new ProductService();
 // ✅ GET: Lấy tất cả sản phẩm
 router.get("/product-list", async (req, res) => {
     try {
-        const products = await productService.getAll();
+        const { category } = req.query;
+        const filter = {};
+
+        if (category) {
+            filter.category = category;
+        }
+
+        const products = await productService.getAll(filter);
+
         res.json({ status: true, data: products });
     } catch (err) {
         console.error("❌ Lỗi lấy sản phẩm:", err);
@@ -18,7 +26,7 @@ router.get("/product-list", async (req, res) => {
 });
 
 // ✅ GET: Lấy 1 sản phẩm theo ID
-router.get("/product-detail", verifyToken, async (req, res) => {
+router.get("/product-detail", async (req, res) => {
     try {
         const product = await productService.getById(req.query.id);
         if (!product) return res.status(404).json({ message: "Không tìm thấy sản phẩm" });

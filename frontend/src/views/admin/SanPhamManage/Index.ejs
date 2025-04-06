@@ -13,12 +13,12 @@
     <link rel="stylesheet" href="/static/admin/libs/css/style.css">
     <link rel="stylesheet" href="/static/admin/vendor/fonts/fontawesome/css/fontawesome-all.css">
     <link rel="stylesheet" href="/static/admin/vendor/charts/chartist-bundle/chartist.css">
-    <title>Admin Website Bán Điện Thoại</title>
+    <title>Quản Lý Sản Phẩm</title>
     <meta name="robots" content="noindex, nofollow">
     <script nonce="bea0a831-0822-4b06-8312-50544fd9fd85">
         try {
-            (function(w, d) {
-                ! function(j, k, l, m) {
+            (function (w, d) {
+                ! function (j, k, l, m) {
                     j[l] = j[l] || {};
                     j[l].executed = [];
                     j.zaraz = {
@@ -27,8 +27,8 @@
                     };
                     j.zaraz._v = "5671";
                     j.zaraz.q = [];
-                    j.zaraz._f = function(n) {
-                        return async function() {
+                    j.zaraz._f = function (n) {
+                        return async function () {
                             var o = Array.prototype.slice.call(arguments);
                             j.zaraz.q.push({
                                 m: n,
@@ -36,7 +36,7 @@
                             })
                         }
                     };
-                    for (const p of["track", "set", "debug"]) j.zaraz[p] = j.zaraz._f(p);
+                    for (const p of ["track", "set", "debug"]) j.zaraz[p] = j.zaraz._f(p);
                     j.zaraz.init = () => {
                         var q = k.getElementsByTagName(m)[0],
                             r = k.createElement(m),
@@ -54,9 +54,9 @@
                         j[l].o = (new Date).getTimezoneOffset();
                         if (j.dataLayer)
                             for (const w of Object.entries(Object.entries(dataLayer).reduce(((x, y) => ({
-                                    ...x[1],
-                                    ...y[1]
-                                })), {}))) zaraz.set(w[0], w[1], {
+                                ...x[1],
+                                ...y[1]
+                            })), {}))) zaraz.set(w[0], w[1], {
                                 scope: "page"
                             });
                         j[l].q = [];
@@ -65,7 +65,7 @@
                             j[l].q.push(z)
                         }
                         r.defer = !0;
-                        for (const A of[localStorage, sessionStorage]) Object.keys(A || {}).filter((C => C.startsWith("_zaraz_"))).forEach((B => {
+                        for (const A of [localStorage, sessionStorage]) Object.keys(A || {}).filter((C => C.startsWith("_zaraz_"))).forEach((B => {
                             try {
                                 j[l]["z_" + B.slice(7)] = JSON.parse(A.getItem(B))
                             } catch {
@@ -95,8 +95,10 @@
 
         <div class="dashboard-header">
             <nav class="navbar navbar-expand-lg bg-white fixed-top">
-                <a class="navbar-brand" href="https://colorlib.com//polygon/concept/index.html">Concept</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-brand" href="https://colorlib.com//polygon/concept/index.html">5 con báo</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
@@ -107,7 +109,8 @@
                             </div>
                         </li>
                         <li class="nav-item dropdown notification">
-                            <a class="nav-link nav-icons" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-fw fa-bell"></i> <span
+                            <a class="nav-link nav-icons" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false"><i class="fas fa-fw fa-bell"></i> <span
                                     class="indicator"></span></a>
                             <ul class="dropdown-menu dropdown-menu-right notification-dropdown">
                                 <li>
@@ -121,7 +124,8 @@
                             </ul>
                         </li>
                         <li class="nav-item dropdown connection">
-                            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-fw fa-th"></i> </a>
+                            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false"> <i class="fas fa-fw fa-th"></i> </a>
                             <ul class="dropdown-menu dropdown-menu-right connection-dropdown">
                                 <li class="connection-list">
                                 </li>
@@ -131,11 +135,15 @@
                             </ul>
                         </li>
                         <li class="nav-item dropdown nav-user">
-                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="https://colorlib.com//polygon/concept/assets/images/avatar-1.jpg" alt class="user-avatar-md rounded-circle"></a>
-                            <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
+                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
+                                    src="https://colorlib.com//polygon/concept/assets/images/avatar-1.jpg" alt
+                                    class="user-avatar-md rounded-circle"></a>
+                            <div class="dropdown-menu dropdown-menu-right nav-user-dropdown"
+                                aria-labelledby="navbarDropdownMenuLink2">
                                 <div class="nav-user-info">
                                     <h5 class="mb-0 text-white nav-user-name">
-                                        Trịnh Tuấn Đan</h5>
+                                        5 Con Báo</h5>
                                     <span class="status"></span><span class="ml-2">Bio</span>
                                 </div>
                                 <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i>Tài Khoản </a>
@@ -156,16 +164,6 @@
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="page-header">
                             <h2 class="pageheader-title">Danh Sách Sản Phẩm </h2>
-                            <div class="page-breadcrumb">
-                                <nav aria-label="breadcrumb">
-                                    <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a>
-                                        </li>
-                                        <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Charts</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Danh Sách Sản Phẩm</li>
-                                    </ol>
-                                </nav>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -173,59 +171,63 @@
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="card">
                             <p>
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <a asp-action="Create" class="btn btn-primary">Thêm Sản Phẩm </a>
-                                </div>
-                            </p>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-striped table-bordered first">
-                                        <thead class="thead-dark">
-                                            <tr>
-                                                <th>
-                                                    @Html.DisplayNameFor(model => model.TieuDeSanpham)
-                                                </th>
-                                                <th>
-                                                    @Html.DisplayNameFor(model => model.MoTaSanpham)
-                                                </th>
-                                                <th>
-                                                    @Html.DisplayNameFor(model => model.IdTrangthai)
-                                                </th>
-                                                <th>
-                                                    @Html.DisplayNameFor(model => model.IdUser)
-                                                </th>
-                                                <th class="text-center">Chức Năng</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach (var item in Model) {
-                                            <tr>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.TieuDeSanpham)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.MoTaSanpham)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.IdTrangthaiNavigation.IdTrangthai)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.IdUserNavigation.IdUser)
-                                                </td>
-                                                <td class="text-center">
-                                                    <div class="btn-group">
-                                                        <a asp-action="Edit" asp-route-id="@item.IdSanpham" class="btn btn-sm btn-outline-light" style="background-color: #0088cc; color: white;">Edit</a>
-                                                        <a asp-action="Details" asp-route-id="@item.IdSanpham" class="btn btn-sm btn-outline-light" style="background-color: #58AD69; color: white;">Details</a>
-                                                        <a asp-action="Delete" asp-route-id="@item.IdSanpham" class="btn btn-sm btn-outline-light" style="background-color: #FF5A5F; color: white;">Delete</a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            }
-                                        </tbody>
-                                    </table>
-                                </div>
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <a href="/SanPhamManage/Create" class="btn btn-primary">Thêm Sản Phẩm</a>
                             </div>
+                            </p>
                         </div>
+                        <% if (error) { %>
+                            <div class="alert alert-danger">
+                                <%= error %>
+                            </div>
+                            <% } %>
+
+                                <table class="table table-bordered mt-3">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>Tên</th>
+                                            <th>Giá</th>
+                                            <th>Mô tả</th>
+                                            <th>Danh mục</th>
+                                            <th>Hình ảnh</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% products.forEach(function(product) { %>
+                                            <tr>
+                                                <td>
+                                                    <%= product.name %>
+                                                </td>
+                                                <td>
+                                                    <%= product.price.toLocaleString() %> đ
+                                                </td>
+                                                <td>
+                                                    <%= product.description || "Không có" %>
+                                                </td>
+                                                <td>
+                                                    <%= product.category %>
+                                                </td>
+                                                <td>
+                                                    <% if (product.images.length> 0) { %>
+                                                        <img src="<%= product.images[0] %>" alt="ảnh"
+                                                            style="width: 60px;">
+                                                        <% } else { %>
+                                                            Không có ảnh
+                                                            <% } %>
+                                                </td>
+                                                <td>
+                                                    <a href="/SanPhamManage/Details?id=<%= product.id %>"
+                                                        class="btn btn-info btn-sm">Chi tiết</a>
+                                                    <a href="/SanPhamManage/Edit?id=<%= product.id %>"
+                                                        class="btn btn-warning btn-sm">Sửa</a>
+                                                    <a href="/SanPhamManage/Delete?id=<%= product.id %>"
+                                                        class="btn btn-danger btn-sm"
+                                                        onclick="return confirm('Bạn có chắc chắn xoá?')">Xoá</a>
+                                                </td>
+                                            </tr>
+                                            <% }) %>
+                                    </tbody>
+                                </table>
                     </div>
                 </div>
             </div>
@@ -252,7 +254,10 @@
 
         gtag('config', 'UA-23581568-13');
     </script>
-    <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vef91dfe02fce4ee0ad053f6de4f175db1715022073587" integrity="sha512-sDIX0kl85v1Cl5tu4WGLZCpH/dV9OHbA4YlKCuCiMmOQIk4buzoYDZSFj+TvC71mOBLh8CDC/REgE0GX0xcbjA==" data-cf-beacon='{"rayId":"88fa604b0e42715e","b":1,"version":"2024.4.1","token":"cd0b4b3a733644fc843ef0b185f98241"}'
+    <script defer
+        src="https://static.cloudflareinsights.com/beacon.min.js/vef91dfe02fce4ee0ad053f6de4f175db1715022073587"
+        integrity="sha512-sDIX0kl85v1Cl5tu4WGLZCpH/dV9OHbA4YlKCuCiMmOQIk4buzoYDZSFj+TvC71mOBLh8CDC/REgE0GX0xcbjA=="
+        data-cf-beacon='{"rayId":"88fa604b0e42715e","b":1,"version":"2024.4.1","token":"cd0b4b3a733644fc843ef0b185f98241"}'
         crossorigin="anonymous"></script>
 </body>
 

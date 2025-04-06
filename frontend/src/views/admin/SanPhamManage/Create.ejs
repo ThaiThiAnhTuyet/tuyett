@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="/static/admin/libs/css/style.css">
     <link rel="stylesheet" href="/static/admin/vendor/fonts/fontawesome/css/fontawesome-all.css">
     <link rel="stylesheet" href="/static/admin/vendor/charts/chartist-bundle/chartist.css">
-    <title>Concept - Bootstrap 4 Admin Dashboard Template</title>
+    <title>Thêm sản phẩm</title>
     <meta name="robots" content="noindex, nofollow">
     <script nonce="bea0a831-0822-4b06-8312-50544fd9fd85">
         try {
@@ -95,7 +95,7 @@
 
         <div class="dashboard-header">
             <nav class="navbar navbar-expand-lg bg-white fixed-top">
-                <a class="navbar-brand" href="https://colorlib.com//polygon/concept/index.html">Concept</a>
+                <a class="navbar-brand" href="https://colorlib.com//polygon/concept/index.html">5 con báo</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -142,8 +142,7 @@
                             <div class="dropdown-menu dropdown-menu-right nav-user-dropdown"
                                 aria-labelledby="navbarDropdownMenuLink2">
                                 <div class="nav-user-info">
-                                    <h5 class="mb-0 text-white nav-user-name">
-                                        Trịnh Tuấn Đan</h5>
+                                    <h5 class="mb-0 text-white nav-user-name">5 Con Báo</h5>
                                     <span class="status"></span><span class="ml-2">Bio</span>
                                 </div>
                                 <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i>Tài Khoản </a>
@@ -164,72 +163,55 @@
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="page-header">
                             <h2 class="pageheader-title">Thêm Sản Phẩm </h2>
-                            <div class="page-breadcrumb">
-                                <nav aria-label="breadcrumb">
-                                    <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a>
-                                        </li>
-                                        <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Sản Phẩm</a>
-                                        </li>
-                                        <li class="breadcrumb-item active" aria-current="page">Thêm Sản Phẩm</li>
-                                    </ol>
-                                </nav>
-                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <!-- Create form mẫu -->
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="card">
-                            <h2 class="card-header">Thêm Sản Phẩm</h2>
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a asp-action="Index" class="breadcrumb-link">Quản Lý Sản
-                                        Phẩm</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Thêm Sản Phẩm</li>
-                            </ol>
-                            <div class="card-body">
-                                <form asp-action="Create" id="validationform" data-parsley-validate="" novalidate="">
-                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-                                    <!-- Tiêu Đề Sản Phẩm -->
-                                    <div class="form-group row">
-                                        <label asp-for="TieuDeSanpham"
-                                            class="col-12 col-sm-3 col-form-label text-sm-right">Tiêu Đề Sản
-                                            Phẩm</label>
-                                        <div class="col-12 col-sm-8 col-lg-6">
-                                            <input asp-for="TieuDeSanpham" class="form-control"
-                                                placeholder="Nhập tiêu đề sản phẩm" />
-                                            <span asp-validation-for="TieuDeSanpham" class="text-danger"></span>
-                                        </div>
-                                    </div>
-
-                                    <!-- Mô Tả Sản Phẩm -->
-                                    <div class="form-group row">
-                                        <label asp-for="MoTaSanpham"
-                                            class="col-12 col-sm-3 col-form-label text-sm-right">Mô Tả Sản
-                                            Phẩm</label>
-                                        <div class="col-12 col-sm-8 col-lg-6">
-                                            <textarea asp-for="MoTaSanpham" class="form-control"
-                                                placeholder="Nhập mô tả sản phẩm"></textarea>
-                                            <span asp-validation-for="MoTaSanpham" class="text-danger"></span>
-                                        </div>
-                                    </div>
-
-                                    <!-- Nút Thao Tác -->
-                                    <div class="form-group row text-right">
-                                        <div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-3">
-                                            <button type="submit" class="btn btn-space btn-primary">Thêm Sản
-                                                Phẩm</button>
-                                            <a asp-action="Index" class="btn btn-space btn-secondary">Quay lại danh
-                                                sách</a>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
+                <div class="container mt-4">
+                    <% if (error) { %>
+                        <div class="alert alert-danger">
+                            <%= error %>
                         </div>
-                    </div>
+                        <% } %>
+
+                            <form action="/SanPhamManage/Create" method="POST">
+                                <div class="form-group">
+                                    <label>Tên sản phẩm</label>
+                                    <input type="text" name="name" class="form-control" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Giá</label>
+                                    <input type="number" name="price" class="form-control" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Mô tả</label>
+                                    <textarea name="description" class="form-control"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Loại sản phẩm</label>
+                                    <select name="category" class="form-control" required>
+                                        <option value="">-- Chọn loại sản phẩm --</option>
+                                        <% categories.forEach(cat=> { %>
+                                            <option value="<%= cat.id %>">
+                                                <%= cat.name %>
+                                            </option>
+                                            <% }) %>
+                                    </select>
+                                </div>
+
+                                <% for (let i=0; i < 5; i++) { %>
+                                    <div class="form-group">
+                                        <label>URL ảnh <%= i===0 ? "" : i %></label>
+                                        <input type="text" name="URLImage<%= i === 0 ? "" : i %>" class="form-control">
+                                    </div>
+                                    <% } %>
+
+                                        <button type="submit" class="btn btn-success">Thêm mới</button>
+                                        <a href="/SanPhamManage/Index" class="btn btn-secondary">Huỷ</a>
+                            </form>
                 </div>
+
             </div>
             <div class="footer">
                 <%- include('../partical/footerManage') %>

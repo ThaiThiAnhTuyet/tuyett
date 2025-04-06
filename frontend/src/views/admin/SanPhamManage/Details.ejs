@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="/static/admin/libs/css/style.css">
     <link rel="stylesheet" href="/static/admin/vendor/fonts/fontawesome/css/fontawesome-all.css">
     <link rel="stylesheet" href="/static/admin/vendor/charts/chartist-bundle/chartist.css">
-    <title>Concept - Bootstrap 4 Admin Dashboard Template</title>
+    <title>Chi tiết sản phẩm</title>
     <meta name="robots" content="noindex, nofollow">
     <script nonce="bea0a831-0822-4b06-8312-50544fd9fd85">
         try {
@@ -95,7 +95,7 @@
 
         <div class="dashboard-header">
             <nav class="navbar navbar-expand-lg bg-white fixed-top">
-                <a class="navbar-brand" href="https://colorlib.com//polygon/concept/index.html">Concept</a>
+                <a class="navbar-brand" href="https://colorlib.com//polygon/concept/index.html">Chi tiết sản phẩm</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -143,7 +143,7 @@
                                 aria-labelledby="navbarDropdownMenuLink2">
                                 <div class="nav-user-info">
                                     <h5 class="mb-0 text-white nav-user-name">
-                                        Trịnh Tuấn Đan</h5>
+                                        5 Con Báo</h5>
                                     <span class="status"></span><span class="ml-2">Bio</span>
                                 </div>
                                 <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i>Tài Khoản </a>
@@ -164,50 +164,39 @@
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="page-header">
                             <h2 class="pageheader-title">Thông Tin Chi Tiết Sản Phẩm </h2>
-                            <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce
-                                sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
-                            <div class="page-breadcrumb">
-                                <nav aria-label="breadcrumb">
-                                    <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a>
-                                        </li>
-                                        <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Sản Phẩm </a>
-                                        </li>
-                                        <li class="breadcrumb-item active" aria-current="page">Thông Tin Chi Tiết Sản
-                                            Phẩm</li>
-                                    </ol>
-                                </nav>
-                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="offset-xl-2 col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="card">
-                            <div class="card-header p-4">
-                                <h4 class="mb-0">Thông Tin Sản Phẩm</h4>
-                            </div>
-                            <div class="card-body">
-                                <dl class="row">
-                                    <!-- Tiêu Đề -->
-                                    <dt class="col-sm-3">Tiêu Đề:</dt>
-                                    <dd class="col-sm-9">@Html.DisplayFor(model => model.TieuDeSanpham)</dd>
-
-                                    <!-- Mô Tả -->
-                                    <dt class="col-sm-3">Mô Tả:</dt>
-                                    <dd class="col-sm-9">@Html.DisplayFor(model => model.MoTaSanpham)</dd>
-                                </dl>
-                            </div>
-
-                            <!-- Nút Thao Tác -->
-                            <div class="card-footer text-right">
-                                <a asp-action="Edit" asp-route-id="@Model.IdSanpham" class="btn btn-primary">Sửa Sản
-                                    Phẩm</a>
-                                <a asp-action="Index" class="btn btn-secondary">Quay lại danh sách</a>
-                            </div>
+                <div class="container mt-4">
+                    <% if (error) { %>
+                        <div class="alert alert-danger">
+                            <%= error %>
                         </div>
-                    </div>
+                        <% } else if (product) { %>
+                            <h3>
+                                <%= product.name %>
+                            </h3>
+                            <p><strong>Giá:</strong>
+                                <%= product.price.toLocaleString() %> đ
+                            </p>
+                            <p><strong>Danh mục:</strong>
+                                <%= product.category %>
+                            </p>
+                            <p><strong>Mô tả:</strong>
+                                <%= product.description || "Không có" %>
+                            </p>
+                            <p><strong>Hình ảnh:</strong></p>
+                            <div class="row">
+                                <% product.images.forEach(function(img) { %>
+                                    <div class="col-md-3 mb-2">
+                                        <img src="<%= img %>" alt="ảnh" class="img-fluid rounded">
+                                    </div>
+                                    <% }) %>
+                            </div>
+                            <a href="/SanPhamManage/Index" class="btn btn-secondary mt-3">← Quay lại danh sách</a>
+                            <% } %>
                 </div>
+
             </div>
             <div class="footer">
                 <%- include('../partical/footerManage') %>

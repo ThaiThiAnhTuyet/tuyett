@@ -3,10 +3,14 @@ const session = require("express-session");
 const bodyParser = require("body-parser");
 const app = express();
 
+
+
+
 // Cấu hình views và static files
 app.set("views", __dirname + "/src/views");
 app.set("view engine", "ejs");
 app.use("/static", express.static(__dirname + "/public"));
+
 
 // Middleware xử lý form và session
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -16,6 +20,12 @@ app.use(session({
     resave: false,
     saveUninitialized: true
 }));
+
+
+app.use((req, res, next) => {
+    res.locals.user = req.session.user || null;
+    next();
+});
 
 // Import controller
 const controller = require(__dirname + "/src/controllers");

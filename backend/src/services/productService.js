@@ -2,9 +2,10 @@ const Product = require("../models/product");
 const mongoose = require("mongoose");
 
 class ProductService {
-    async getAll() {
-        return await Product.find().populate("category");
+    async getAll(filter = {}) {
+        return await Product.find(filter).populate("category");
     }
+    
 
     async getById(id) {
         if (!mongoose.Types.ObjectId.isValid(id)) return null;
