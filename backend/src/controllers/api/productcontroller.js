@@ -2,12 +2,14 @@
 const express = require("express");
 const router = express.Router();
 const verifyToken = require("../../util/VerifyToken");
+const checkRole = require("../../util/checkRole");
+const { checkMultiRole } = require("../../util/checkRole"); // Sửa dòng này
 
 const ProductService = require("../../services/productService");
 const productService = new ProductService();
 
 // ✅ GET: Lấy tất cả sản phẩm
-router.get("/product-list", async (req, res) => {
+router.get("/product-list",verifyToken, checkMultiRole(["admin", "user"]), async (req, res) => {
     try {
         const { category } = req.query;
         const filter = {};
@@ -26,7 +28,7 @@ router.get("/product-list", async (req, res) => {
 });
 
 // ✅ GET: Lấy 1 sản phẩm theo ID
-router.get("/product-detail", async (req, res) => {
+router.get("/product-detail",verifyToken, checkMultiRole(["admin", "user"]), async (req, res) => {
     try {
         const product = await productService.getById(req.query.id);
         if (!product) return res.status(404).json({ message: "Không tìm thấy sản phẩm" });
@@ -38,7 +40,7 @@ router.get("/product-detail", async (req, res) => {
 });
 
 // ✅ POST: Thêm sản phẩm
-router.post("/add-product", verifyToken, async (req, res) => {
+router.post("/add-product", verifyToken, checkRole("admin"), async (req, res) => {
     try {
         const created = await productService.create(req.body);
         res.status(201).json({ status: true, message: "✅ Thêm sản phẩm thành công", data: created });
@@ -49,7 +51,7 @@ router.post("/add-product", verifyToken, async (req, res) => {
 });
 
 // ✅ PUT: Cập nhật sản phẩm
-router.put("/update-product", verifyToken, async (req, res) => {
+router.put("/update-product", verifyToken, checkRole("admin"), async (req, res) => {
     try {
         const updated = await productService.update(req.body._id, req.body);
         if (!updated) return res.status(404).json({ message: "Không tìm thấy sản phẩm để cập nhật" });
@@ -61,7 +63,7 @@ router.put("/update-product", verifyToken, async (req, res) => {
 });
 
 // ✅ DELETE: Xoá sản phẩm
-router.delete("/delete-product", verifyToken, async (req, res) => {
+router.delete("/delete-product", verifyToken, checkRole("admin"), async (req, res) => {
     try {
         const deleted = await productService.delete(req.query.id);
         if (!deleted) return res.status(404).json({ message: "Không tìm thấy sản phẩm để xoá" });

@@ -1,12 +1,15 @@
 //D:\DaiHocHutechKhoa2021\41.NgoNguPhatTrienMoi\website_bandienthoai_nodejs_javascript_mongodb\backend\src\controllers\api\authenticatecontroller.js
 const express = require("express");
 const router = express.Router();
+
 const verifyToken = require("../../util/VerifyToken");
+const checkRole = require("../../util/checkRole");
+const { checkMultiRole } = require("../../util/checkRole");// Sửa dòng này
 const BlogService = require("../../services/blogService");
 const blogService = new BlogService();
 
 // ✅ GET: Lấy tất cả bài viết
-router.get("/list", async (req, res) => {
+router.get("/list",verifyToken, checkMultiRole(["admin", "user"]), async (req, res) => {
     try {
         const blogs = await blogService.getAll();
         res.json({ status: true, data: blogs });
@@ -17,7 +20,7 @@ router.get("/list", async (req, res) => {
 });
 
 // ✅ GET: Lấy 1 bài viết theo ID
-router.get("/detail", async (req, res) => {
+router.get("/detail",verifyToken, checkMultiRole(["admin", "user"]), async (req, res) => {
     try {
         const blog = await blogService.getById(req.query.id);
         if (!blog) return res.status(404).json({ message: "Không tìm thấy bài viết" });
@@ -29,7 +32,7 @@ router.get("/detail", async (req, res) => {
 });
 
 // ✅ POST: Thêm mới bài viết
-router.post("/add", verifyToken, async (req, res) => {
+router.post("/add", verifyToken, checkRole("admin"), async (req, res) => {
     try {
         const created = await blogService.create(req.body, req.userData.user.name);
         res.status(201).json({ status: true, message: "✅ Đã tạo bài viết", data: created });
@@ -40,7 +43,7 @@ router.post("/add", verifyToken, async (req, res) => {
 });
 
 // ✅ PUT: Cập nhật bài viết
-router.put("/update", verifyToken, async (req, res) => {
+router.put("/update", verifyToken, checkRole("admin"), async (req, res) => {
     try {
         const updated = await blogService.update(req.body._id, req.body);
         if (!updated) return res.status(404).json({ message: "Không tìm thấy bài viết để cập nhật" });
@@ -52,7 +55,7 @@ router.put("/update", verifyToken, async (req, res) => {
 });
 
 // ✅ DELETE: Xoá bài viết
-router.delete("/delete", verifyToken, async (req, res) => {
+router.delete("/delete", verifyToken,checkRole("admin"), async (req, res) => {
     try {
         const deleted = await blogService.delete(req.query.id);
         if (!deleted) return res.status(404).json({ message: "Không tìm thấy bài viết để xoá" });

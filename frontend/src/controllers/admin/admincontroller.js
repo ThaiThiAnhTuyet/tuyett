@@ -5,25 +5,23 @@ const UserModel = require("../../models/UserModel");
 const ProductModel = require("../../models/ProductModel");
 const CategoryModel = require("../../models/CategoryModel");
 const BlogModel = require("../../models/BlogModel");
-const checkAdminToken = require("../../middleware/checkAdminToken");
+const checkAdminToken = require("../../middleware/checkRole");
 
-router.use(checkAdminToken);
+// Middleware kiểm tra vai trò admin
+router.use((req, res, next) => {
+    if (!req.isAdmin) {
+        return res.status(403).render("unauthorized", {
+            message: "Bạn không có quyền truy cập vào trang quản trị."
+        });
+    }
+    next();
+});
 
+// Các route quản trị
 router.get("/UserManage", async function (req, res) {
     const token = req.session.token;
 
-    // ❌ Nếu chưa đăng nhập → chuyển về login
-    if (!token) {
-        return res.redirect("/login");
-    }
-
     try {
-        // ✅ Gọi API xác minh token và role admin
-        await axios.get("http://localhost:5000/api/auth/admin-only", {
-            headers: { Authorization: `Bearer ${token}` }
-        });
-
-        // ✅ Nếu hợp lệ → gọi API lấy danh sách user
         const response = await axios.get("http://localhost:5000/api/auth/user-list", {
             headers: { Authorization: `Bearer ${token}` }
         });
@@ -33,19 +31,9 @@ router.get("/UserManage", async function (req, res) {
             users: userList,
             error: null
         });
-
     } catch (err) {
         console.error("❌ Lỗi truy cập UserManage:", err.message);
-
-        // ❌ Không phải admin hoặc token hết hạn
-        if (err.response && err.response.status === 403) {
-            return res.status(403).render("unauthorized", {
-                message: "Bạn không có quyền truy cập vào trang quản trị."
-            });
-        }
-
-        // ❌ Lỗi token hết hạn hoặc lỗi khác → chuyển về login
-        return res.redirect("/login");
+        res.redirect("/login");
     }
 });
 

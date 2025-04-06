@@ -10,8 +10,8 @@ router.get("/product", async (req, res) => {
         const categoryId = req.query.category;
 
         const productApiUrl = categoryId
-            ? `http://localhost:56804/api/product/product-list?category=${categoryId}`
-            : `http://localhost:56804/api/product/product-list`;
+            ? `http://localhost:5000/api/product/product-list?category=${categoryId}`
+            : `http://localhost:5000/api/product/product-list`;
 
         const [productRes, categoryRes] = await Promise.all([
             axios.get(productApiUrl),

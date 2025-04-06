@@ -4,12 +4,12 @@ const router = express.Router();
 
 const verifyToken = require("../../util/VerifyToken");
 const checkRole = require("../../util/checkRole");
+const { checkMultiRole } = require("../../util/checkRole");// Sửa dòng này
 const CategoryService = require("../../services/categoryService");
-
 const categoryService = new CategoryService();
 
 // ✅ GET: Lấy danh sách category
-router.get("/category-list", async (req, res) => {
+router.get("/category-list", verifyToken, checkMultiRole(["admin", "user"]), async (req, res) => {
     try {
         const categories = await categoryService.getAll();
         res.json({ status: true, data: categories });
@@ -18,6 +18,7 @@ router.get("/category-list", async (req, res) => {
         res.status(500).json({ status: false, message: "Lỗi server" });
     }
 });
+
 
 // ✅ POST: Thêm category mới
 router.post("/add-category", verifyToken, checkRole("admin"), async (req, res) => {

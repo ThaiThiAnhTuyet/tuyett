@@ -2,11 +2,13 @@
 const express = require("express");
 const router = express.Router();
 const verifyToken = require("../../util/VerifyToken");
+const checkRole = require("../../util/checkRole");
+const { checkMultiRole } = require("../../util/checkRole"); // Sửa dòng này
 const OrderService = require("../../services/orderService");
 const orderService = new OrderService();
 
 // ✅ Thêm vào giỏ hàng
-router.post("/add-to-cart", verifyToken, async (req, res) => {
+router.post("/add-to-cart", verifyToken, checkRole("user"), async (req, res) => {
     try {
         const { productId, quantity } = req.body;
         const userId = req.userData.user._id;
@@ -19,7 +21,7 @@ router.post("/add-to-cart", verifyToken, async (req, res) => {
 });
 
 // ✅ Lấy giỏ hàng
-router.get("/cart", verifyToken, async (req, res) => {
+router.get("/cart", verifyToken, checkMultiRole(["admin", "user"]), async (req, res) => {
     try {
         const userId = req.userData.user._id;
         const cart = await orderService.getCart(userId);
@@ -30,7 +32,7 @@ router.get("/cart", verifyToken, async (req, res) => {
 });
 
 // ✅ Xoá khỏi giỏ
-router.delete("/remove-from-cart", verifyToken, async (req, res) => {
+router.delete("/remove-from-cart", checkMultiRole(["admin", "user"]), async (req, res) => {
     try {
         const userId = req.userData.user._id;
         const { productId } = req.query;
@@ -42,7 +44,7 @@ router.delete("/remove-from-cart", verifyToken, async (req, res) => {
 });
 
 // ✅ Thanh toán
-router.post("/checkout", verifyToken, async (req, res) => {
+router.post("/checkout", verifyToken, checkMultiRole(["admin", "user"]), async (req, res) => {
     try {
         const userId = req.userData.user._id;
         const order = await orderService.checkout(userId);
@@ -53,7 +55,7 @@ router.post("/checkout", verifyToken, async (req, res) => {
 });
 
 // ✅ Lịch sử đơn hàng
-router.get("/history", verifyToken, async (req, res) => {
+router.get("/history", verifyToken, checkMultiRole(["admin", "user"]), async (req, res) => {
     try {
         const userId = req.userData.user._id;
         const orders = await orderService.getOrderHistory(userId);

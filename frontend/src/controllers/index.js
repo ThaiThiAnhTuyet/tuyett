@@ -8,7 +8,9 @@ router.use("/", require(__dirname + "/productcontroller"));
 router.use("/", require(__dirname + "/blogcontroller"));
 router.use("/about", require(__dirname + "/aboutcontroller"));
 router.use("/lienhe", require(__dirname + "/lienhecontroller"));
+router.use("/order", require(__dirname + "/ordercontroller"));
 router.use("/", require(__dirname + "/authenticatecontroller"));
+router.use("/", require(__dirname + "/roleController")); // Thêm route kiểm tra vai trò
 
 router.use("/", require(__dirname + "/admin/admincontroller"));
 

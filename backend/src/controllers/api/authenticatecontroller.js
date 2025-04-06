@@ -76,7 +76,7 @@ router.put("/update-user", verifyToken, checkMultiRole(["admin", "user"]), async
 });
 
 // ✅ Danh sách user
-router.get("/user-list", async (req, res) => {
+router.get("/user-list", verifyToken, checkMultiRole(["admin", "user"]), async (req, res) => {
     try {
         const users = await userService.getAllUsers();
         res.json({ status: true, data: users });
@@ -86,7 +86,7 @@ router.get("/user-list", async (req, res) => {
 });
 
 // ✅ Chi tiết user
-router.get("/user-detail", async (req, res) => {
+router.get("/user-detail",verifyToken, checkMultiRole(["admin", "user"]), async (req, res) => {
     try {
         const user = await userService.getUserById(req.query.id);
         if (!user) return res.status(404).json({ message: "❌ Không tìm thấy người dùng" });

@@ -19,7 +19,7 @@ module.exports = async function (req, res, next) {
             });
             req.session.user = userRes.data.user; // Gán vào session
         }
-
+0
         next(); // ✅ Cho phép truy cập
     } catch (err) {
         console.error("❌ checkAdminToken error:", err.message);

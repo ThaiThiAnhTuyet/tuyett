@@ -13,7 +13,7 @@ router.get("/register", (req, res) => {
 router.post("/register", async (req, res) => {
     try {
         const body = { ...req.body, role: "user" }; // ✅ Gán mặc định role
-        const response = await axios.post("http://localhost:56804/api/auth/register", body);
+        const response = await axios.post("http://localhost:5000/api/auth/register", body);
 
         const user = new UserModel(response.data.user);
         req.session.user = user;
@@ -33,12 +33,12 @@ router.get("/login", (req, res) => {
 // Xử lý đăng nhập
 router.post("/login", async (req, res) => {
     try {
-        const response = await axios.post("http://localhost:56804/api/auth/login", req.body);
+        const response = await axios.post("http://localhost:5000/api/auth/login", req.body);
         const { token, user } = response.data;
 
         res.cookie("token", token, { httpOnly: true });
-        req.session.token = token; 
-        req.session.user = user;
+        req.session.token = token; // Lưu token vào session
+        req.session.user = new UserModel(user); // Lưu thông tin user vào session dưới dạng UserModel
 
         if (user.role === "admin") {
             return res.redirect("/UserManage");
@@ -58,7 +58,7 @@ router.get("/account", async (req, res) => {
 
     try {
         // Gọi lại backend để lấy thông tin người dùng
-        const response = await axios.get("http://localhost:56804/api/auth/test-security", {
+        const response = await axios.get("http://localhost:5000/api/auth/test-security", {
             headers: {
                 Authorization: `Bearer ${token}`
             }
