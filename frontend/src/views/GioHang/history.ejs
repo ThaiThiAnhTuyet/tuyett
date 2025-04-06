@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lịch sử đơn hàng</title>
+</head>
+
+<body>
+    <h1>Lịch sử đơn hàng</h1>
+    <% if (error) { %>
+        <p style="color: red;">
+            <%= error %>
+        </p>
+        <% } else if (orders.length===0) { %>
+            <p>Bạn chưa có đơn hàng nào.</p>
+            <% } else { %>
+                <ul>
+                    <% orders.forEach(order=> { %>
+                        <li>
+                            <p>Mã đơn hàng: <%= order.id %>
+                            </p>
+                            <p>Tổng tiền: <%= order.total %> VND</p>
+                            <p>Ngày thanh toán: <%= order.paidAt.toLocaleDateString() %>
+                            </p>
+                        </li>
+                        <% }); %>
+                </ul>
+                <% } %>
+</body>
+
+</html>

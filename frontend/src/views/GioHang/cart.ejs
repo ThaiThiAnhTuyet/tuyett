@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Giỏ hàng</title>
+</head>
+
+<body>
+    <h1>Giỏ hàng của bạn</h1>
+    <% if (error) { %>
+        <p style="color: red;">
+            <%= error %>
+        </p>
+        <% } else if (cartItems.length===0) { %>
+            <p>Giỏ hàng của bạn đang trống.</p>
+            <% } else { %>
+                <ul>
+                    <% cartItems.forEach(item=> { %>
+                        <li>
+                            <p>Sản phẩm: <%= item.product.name %>
+                            </p>
+                            <p>Số lượng: <%= item.quantity %>
+                            </p>
+                        </li>
+                        <% }); %>
+                </ul>
+                <% } %>
+                    <a href="/order/checkout">Thanh toán</a>
+</body>
+
+</html>
