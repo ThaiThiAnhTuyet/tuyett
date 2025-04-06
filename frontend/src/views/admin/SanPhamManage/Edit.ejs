@@ -1,292 +1,244 @@
-﻿@model WebBatDongSan_DKCN.Models.SanPham
+﻿<!doctype html>
+<html lang="en">
 
-@{
-    ViewData["Title"] = "Edit";
-    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
-}
+<!-- Mirrored from colorlib.com//polygon/concept/pages/chart-chartist.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 06 Jun 2024 18:13:23 GMT -->
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="/static/admin/vendor/bootstrap/css/bootstrap.min.css">
+    <link href="/static/admin/vendor/fonts/circular-std/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/admin/libs/css/style.css">
+    <link rel="stylesheet" href="/static/admin/vendor/fonts/fontawesome/css/fontawesome-all.css">
+    <link rel="stylesheet" href="/static/admin/vendor/charts/chartist-bundle/chartist.css">
+    <title>Sửa sản phẩm</title>
+    <meta name="robots" content="noindex, nofollow">
+    <script nonce="bea0a831-0822-4b06-8312-50544fd9fd85">
+        try {
+            (function (w, d) {
+                ! function (j, k, l, m) {
+                    j[l] = j[l] || {};
+                    j[l].executed = [];
+                    j.zaraz = {
+                        deferred: [],
+                        listeners: []
+                    };
+                    j.zaraz._v = "5671";
+                    j.zaraz.q = [];
+                    j.zaraz._f = function (n) {
+                        return async function () {
+                            var o = Array.prototype.slice.call(arguments);
+                            j.zaraz.q.push({
+                                m: n,
+                                a: o
+                            })
+                        }
+                    };
+                    for (const p of ["track", "set", "debug"]) j.zaraz[p] = j.zaraz._f(p);
+                    j.zaraz.init = () => {
+                        var q = k.getElementsByTagName(m)[0],
+                            r = k.createElement(m),
+                            s = k.getElementsByTagName("title")[0];
+                        s && (j[l].t = k.getElementsByTagName("title")[0].text);
+                        j[l].x = Math.random();
+                        j[l].w = j.screen.width;
+                        j[l].h = j.screen.height;
+                        j[l].j = j.innerHeight;
+                        j[l].e = j.innerWidth;
+                        j[l].l = j.location.href;
+                        j[l].r = k.referrer;
+                        j[l].k = j.screen.colorDepth;
+                        j[l].n = k.characterSet;
+                        j[l].o = (new Date).getTimezoneOffset();
+                        if (j.dataLayer)
+                            for (const w of Object.entries(Object.entries(dataLayer).reduce(((x, y) => ({
+                                ...x[1],
+                                ...y[1]
+                            })), {}))) zaraz.set(w[0], w[1], {
+                                scope: "page"
+                            });
+                        j[l].q = [];
+                        for (; j.zaraz.q.length;) {
+                            const z = j.zaraz.q.shift();
+                            j[l].q.push(z)
+                        }
+                        r.defer = !0;
+                        for (const A of [localStorage, sessionStorage]) Object.keys(A || {}).filter((C => C.startsWith("_zaraz_"))).forEach((B => {
+                            try {
+                                j[l]["z_" + B.slice(7)] = JSON.parse(A.getItem(B))
+                            } catch {
+                                j[l]["z_" + B.slice(7)] = A.getItem(B)
+                            }
+                        }));
+                        r.referrerPolicy = "origin";
+                        r.src = "https://colorlib.com/cdn-cgi/zaraz/s.js?z=" + btoa(encodeURIComponent(JSON.stringify(j[l])));
+                        q.parentNode.insertBefore(r, q)
+                    };
+                    ["complete", "interactive"].includes(k.readyState) ? zaraz.init() : j.addEventListener("DOMContentLoaded", zaraz.init)
+                }(w, d, "zarazData", "script");
+            })(window, document)
+        } catch (e) {
+            throw fetch("/cdn-cgi/zaraz/t"), e;
+        };
+    </script>
+</head>
+
+<body>
 
 
-<div class="container-fluid dashboard-content">
-    <!-- ============================================================== -->
-    <!-- pageheader -->
-    <!-- ============================================================== -->
-    <div class="row">
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-            <div class="page-header">
-                <h2 class="pageheader-title">Sửa Sản Phẩm</h2>
-                <div class="page-breadcrumb">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a asp-action="Index" class="breadcrumb-link">Quản Lý Sản Phẩm</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Sửa Sản Phẩm</li>
-                        </ol>
-                    </nav>
+
+    <div class="dashboard-main-wrapper">
+
+
+
+        <div class="dashboard-header">
+            <nav class="navbar navbar-expand-lg bg-white fixed-top">
+                <a class="navbar-brand" href="https://colorlib.com//polygon/concept/index.html">5 con báo</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto navbar-right-top">
+                        <li class="nav-item">
+                            <div id="custom-search" class="top-search-bar">
+                                <input class="form-control" type="text" placeholder="Search..">
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown notification">
+                            <a class="nav-link nav-icons" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false"><i class="fas fa-fw fa-bell"></i> <span
+                                    class="indicator"></span></a>
+                            <ul class="dropdown-menu dropdown-menu-right notification-dropdown">
+                                <li>
+                                    <div class="notification-title"> Notification</div>
+                                    <div class="notification-list">
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="list-footer"> <a href="#">View all notifications</a></div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown connection">
+                            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false"> <i class="fas fa-fw fa-th"></i> </a>
+                            <ul class="dropdown-menu dropdown-menu-right connection-dropdown">
+                                <li class="connection-list">
+                                </li>
+                                <li>
+                                    <div class="conntection-footer"><a href="#">More</a></div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown nav-user">
+                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
+                                    src="https://colorlib.com//polygon/concept/assets/images/avatar-1.jpg" alt
+                                    class="user-avatar-md rounded-circle"></a>
+                            <div class="dropdown-menu dropdown-menu-right nav-user-dropdown"
+                                aria-labelledby="navbarDropdownMenuLink2">
+                                <div class="nav-user-info">
+                                    <h5 class="mb-0 text-white nav-user-name">
+                                        5 Con Báo</h5>
+                                    <span class="status"></span><span class="ml-2">Bio</span>
+                                </div>
+                                <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i>Tài Khoản </a>
+                                <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Cài Đặt </a>
+                                <a class="dropdown-item" href="#"><i class="fas fa-power-off mr-2"></i>Đăng Xuất </a>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
+            </nav>
+        </div>
+        <div class="nav-left-sidebar sidebar-dark">
+            <%- include('../partical/menuManage') %>
+        </div>
+        <div class="dashboard-wrapper">
+            <div class="container-fluid  dashboard-content">
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="page-header">
+                            <h2 class="pageheader-title">Sửa Sản Phẩm </h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="container mt-4">
+                    <% if (error) { %>
+                        <div class="alert alert-danger">
+                            <%= error %>
+                        </div>
+                        <% } %>
+
+                            <% if (product) { %>
+                                <form action="/SanPhamManage/Edit" method="POST">
+                                    <input type="hidden" name="_id" value="<%= product.id %>">
+
+                                    <div class="form-group">
+                                        <label>Tên sản phẩm</label>
+                                        <input type="text" class="form-control" name="name" value="<%= product.name %>"
+                                            required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Giá</label>
+                                        <input type="number" class="form-control" name="price"
+                                            value="<%= product.price %>" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Mô tả</label>
+                                        <textarea class="form-control" name="description"
+                                            rows="5"><%= product.description %></textarea>
+                                    </div>
+
+                                    <% product.images.forEach((img, i)=> { %>
+                                        <div class="form-group">
+                                            <label>Hình ảnh <%= i + 1 %></label>
+                                            <input type="text" class="form-control"
+                                                name="URLImage<%= i === 0 ? '' : i %>" value="<%= img %>">
+                                        </div>
+                                        <% }) %>
+
+                                            <button type="submit" class="btn btn-primary">Cập nhật sản phẩm</button>
+                                </form>
+                                <% } %>
+                </div>
+            </div>
+            <div class="footer">
+                <%- include('../partical/footerManage') %>
             </div>
         </div>
     </div>
-    <!-- ============================================================== -->
-    <!-- end pageheader -->
-    <!-- ============================================================== -->
+    <script src="https://colorlib.com//polygon/concept/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+    <script src="https://colorlib.com//polygon/concept/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="https://colorlib.com//polygon/concept/assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+    <script src="https://colorlib.com//polygon/concept/assets/vendor/charts/chartist-bundle/chartist.min.js"></script>
+    <script src="https://colorlib.com//polygon/concept/assets/vendor/charts/chartist-bundle/Chartistjs.js"></script>
+    <script src="https://colorlib.com//polygon/concept/assets/libs/js/main-js.js"></script>
 
-    <div class="row">
-        <div class="offset-xl-2 col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12">
-            <div class="card">
-                <div class="card-header p-4">
-                    <h4 class="mb-0">Chỉnh sửa sản phẩm</h4>
-                </div>
-                <div class="card-body">
-                    <form asp-action="Edit">
-                        <!-- Hidden field to store the ID -->
-                        <input type="hidden" asp-for="IdSanpham" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-                        <!-- Tiêu Đề Sản Phẩm -->
-                        <div class="form-group row">
-                            <label asp-for="TieuDeSanpham" class="col-12 col-sm-3 col-form-label text-sm-right">Tiêu Đề</label>
-                            <div class="col-12 col-sm-8 col-lg-6">
-                                <input asp-for="TieuDeSanpham" class="form-control" placeholder="Nhập tiêu đề sản phẩm" />
-                                <span asp-validation-for="TieuDeSanpham" class="text-danger"></span>
-                            </div>
-                        </div>
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
 
-                        <!-- Mô Tả Sản Phẩm -->
-                        <div class="form-group row">
-                            <label asp-for="MoTaSanpham" class="col-12 col-sm-3 col-form-label text-sm-right">Mô Tả</label>
-                            <div class="col-12 col-sm-8 col-lg-6">
-                                <input asp-for="MoTaSanpham" class="form-control" placeholder="Nhập mô tả sản phẩm" />
-                                <span asp-validation-for="MoTaSanpham" class="text-danger"></span>
-                            </div>
-                        </div>
+        gtag('config', 'UA-23581568-13');
+    </script>
+    <script defer
+        src="https://static.cloudflareinsights.com/beacon.min.js/vef91dfe02fce4ee0ad053f6de4f175db1715022073587"
+        integrity="sha512-sDIX0kl85v1Cl5tu4WGLZCpH/dV9OHbA4YlKCuCiMmOQIk4buzoYDZSFj+TvC71mOBLh8CDC/REgE0GX0xcbjA=="
+        data-cf-beacon='{"rayId":"88fa604b0e42715e","b":1,"version":"2024.4.1","token":"cd0b4b3a733644fc843ef0b185f98241"}'
+        crossorigin="anonymous"></script>
+</body>
 
-                        <!-- Giá Sản Phẩm -->
-                        <div class="form-group row">
-                            <label asp-for="GiaSanPham" class="col-12 col-sm-3 col-form-label text-sm-right">Giá</label>
-                            <div class="col-12 col-sm-8 col-lg-6">
-                                <input asp-for="GiaSanPham" class="form-control" placeholder="Nhập giá sản phẩm" />
-                                <span asp-validation-for="GiaSanPham" class="text-danger"></span>
-                            </div>
-                        </div>
+<!-- Mirrored from colorlib.com//polygon/concept/pages/chart-chartist.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 06 Jun 2024 18:13:24 GMT -->
 
-                        <!-- Diện Tích -->
-                        <div class="form-group row">
-                            <label asp-for="DienTich" class="col-12 col-sm-3 col-form-label text-sm-right">Diện Tích</label>
-                            <div class="col-12 col-sm-8 col-lg-6">
-                                <input asp-for="DienTich" class="form-control" placeholder="Nhập diện tích" />
-                                <span asp-validation-for="DienTich" class="text-danger"></span>
-                            </div>
-                        </div>
-
-                        <!-- Ngày Đăng -->
-                        <div class="form-group row">
-                            <label asp-for="NgayDang" class="col-12 col-sm-3 col-form-label text-sm-right">Ngày Đăng</label>
-                            <div class="col-12 col-sm-8 col-lg-6">
-                                <input asp-for="NgayDang" type="datetime-local" class="form-control" />
-                                <span asp-validation-for="NgayDang" class="text-danger"></span>
-                            </div>
-                        </div>
-
-                        <!-- Hình Ảnh 1 -->
-                        <div class="form-group row">
-                            <label asp-for="Img1" class="col-12 col-sm-3 col-form-label text-sm-right">Hình Ảnh 1</label>
-                            <div class="col-12 col-sm-8 col-lg-6">
-                                <input asp-for="Img1" class="form-control" />
-                                <span asp-validation-for="Img1" class="text-danger"></span>
-                            </div>
-                        </div>
-
-                        <!-- Hình Ảnh 2 -->
-                        <div class="form-group row">
-                            <label asp-for="Img2" class="col-12 col-sm-3 col-form-label text-sm-right">Hình Ảnh 2</label>
-                            <div class="col-12 col-sm-8 col-lg-6">
-                                <input asp-for="Img2" class="form-control" />
-                                <span asp-validation-for="Img2" class="text-danger"></span>
-                            </div>
-                        </div>
-
-                        <!-- Hình Ảnh 3 -->
-                        <div class="form-group row">
-                            <label asp-for="Img3" class="col-12 col-sm-3 col-form-label text-sm-right">Hình Ảnh 3</label>
-                            <div class="col-12 col-sm-8 col-lg-6">
-                                <input asp-for="Img3" class="form-control" />
-                                <span asp-validation-for="Img3" class="text-danger"></span>
-                            </div>
-                        </div>
-
-                        <!-- Hình Ảnh 4 -->
-                        <div class="form-group row">
-                            <label asp-for="Img4" class="col-12 col-sm-3 col-form-label text-sm-right">Hình Ảnh 4</label>
-                            <div class="col-12 col-sm-8 col-lg-6">
-                                <input asp-for="Img4" class="form-control" />
-                                <span asp-validation-for="Img4" class="text-danger"></span>
-                            </div>
-                        </div>
-
-                        <!-- Hình Ảnh 5 -->
-                        <div class="form-group row">
-                            <label asp-for="Img5" class="col-12 col-sm-3 col-form-label text-sm-right">Hình Ảnh 5</label>
-                            <div class="col-12 col-sm-8 col-lg-6">
-                                <input asp-for="Img5" class="form-control" />
-                                <span asp-validation-for="Img5" class="text-danger"></span>
-                            </div>
-                        </div>
-
-                        <!-- Người Dùng -->
-                        <div class="form-group row">
-                            <label asp-for="IdUser" class="col-12 col-sm-3 col-form-label text-sm-right">Người Dùng</label>
-                            <div class="col-12 col-sm-8 col-lg-6">
-                                <select asp-for="IdUser" class="form-control" asp-items="ViewBag.IdUser"></select>
-                                <span asp-validation-for="IdUser" class="text-danger"></span>
-                            </div>
-                        </div>
-
-                        <!-- Giấy Tờ Tài Liệu -->
-                        <div class="form-group row">
-                            <label asp-for="IdGiaytoTailieu" class="col-12 col-sm-3 col-form-label text-sm-right">Giấy Tờ Tài Liệu</label>
-                            <div class="col-12 col-sm-8 col-lg-6">
-                                <select asp-for="IdGiaytoTailieu" class="form-control" asp-items="ViewBag.IdGiaytoTailieu"></select>
-                                <span asp-validation-for="IdGiaytoTailieu" class="text-danger"></span>
-                            </div>
-                        </div>
-
-                        <!-- Loại Tin -->
-                        <div class="form-group row">
-                            <label asp-for="IdLoaitin" class="col-12 col-sm-3 col-form-label text-sm-right">Loại Tin</label>
-                            <div class="col-12 col-sm-8 col-lg-6">
-                                <select asp-for="IdLoaitin" class="form-control" asp-items="ViewBag.IdLoaitin"></select>
-                                <span asp-validation-for="IdLoaitin" class="text-danger"></span>
-                            </div>
-                        </div>
-
-                        <!-- Loại Bất Động Sản -->
-                        <div class="form-group row">
-                            <label asp-for="IdLoaibds" class="col-12 col-sm-3 col-form-label text-sm-right">Loại Bất Động Sản</label>
-                            <div class="col-12 col-sm-8 col-lg-6">
-                                <select asp-for="IdLoaibds" class="form-control" asp-items="ViewBag.IdLoaibds"></select>
-                                <span asp-validation-for="IdLoaibds" class="text-danger"></span>
-                            </div>
-                        </div>
-
-                        <!-- Tỉnh Thành -->
-                        <div class="form-group row">
-                            <label asp-for="IdTinhthanh" class="col-12 col-sm-3 col-form-label text-sm-right">Tỉnh Thành</label>
-                            <div class="col-12 col-sm-8 col-lg-6">
-                                <select asp-for="IdTinhthanh" class="form-control" asp-items="ViewBag.IdTinhthanh"></select>
-                                <span asp-validation-for="IdTinhthanh" class="text-danger"></span>
-                            </div>
-                        </div>
-
-                        <!-- Quận Huyện -->
-                        <div class="form-group row">
-                            <label asp-for="IdQuanhuyen" class="col-12 col-sm-3 col-form-label text-sm-right">Quận Huyện</label>
-                            <div class="col-12 col-sm-8 col-lg-6">
-                                <select asp-for="IdQuanhuyen" class="form-control" asp-items="ViewBag.IdQuanhuyen"></select>
-                                <span asp-validation-for="IdQuanhuyen" class="text-danger"></span>
-                            </div>
-                        </div>
-
-                        <!-- Xã Phường -->
-                        <div class="form-group row">
-                            <label asp-for="IdPhuongxa" class="col-12 col-sm-3 col-form-label text-sm-right">Xã Phường</label>
-                            <div class="col-12 col-sm-8 col-lg-6">
-                                <select asp-for="IdPhuongxa" class="form-control" asp-items="ViewBag.IdPhuongxa"></select>
-                                <span asp-validation-for="IdPhuongxa" class="text-danger"></span>
-                            </div>
-                        </div>
-
-                        <!-- Chiều Ngang -->
-                        <div class="form-group">
-                            <label asp-for="Chieungang" class="control-label"></label>
-                            <input asp-for="Chieungang" class="form-control" />
-                            <span asp-validation-for="Chieungang" class="text-danger"></span>
-                        </div>
-
-                        <!-- Chiều Dài -->
-                        <div class="form-group">
-                            <label asp-for="Chieudai" class="control-label"></label>
-                            <input asp-for="Chieudai" class="form-control" />
-                            <span asp-validation-for="Chieudai" class="text-danger"></span>
-                        </div>
-
-                        <!-- Số Lầu -->
-                        <div class="form-group">
-                            <label asp-for="SoLau" class="control-label"></label>
-                            <input asp-for="SoLau" class="form-control" />
-                            <span asp-validation-for="SoLau" class="text-danger"></span>
-                        </div>
-
-                        <!-- Số Phòng Ngủ -->
-                        <div class="form-group">
-                            <label asp-for="SoPhongNgu" class="control-label"></label>
-                            <input asp-for="SoPhongNgu" class="form-control" />
-                            <span asp-validation-for="SoPhongNgu" class="text-danger"></span>
-                        </div>
-
-                        <!-- Phòng Ăn -->
-                        <div class="form-group">
-                            <label asp-for="PhongAn" class="control-label"></label>
-                            <input asp-for="PhongAn" class="form-control" />
-                            <span asp-validation-for="PhongAn" class="text-danger"></span>
-                        </div>
-
-                        <!-- Nhà Bếp -->
-                        <div class="form-group">
-                            <label asp-for="NhaBep" class="control-label"></label>
-                            <input asp-for="NhaBep" class="form-control" />
-                            <span asp-validation-for="NhaBep" class="text-danger"></span>
-                        </div>
-
-                        <!-- Sân Thượng -->
-                        <div class="form-group">
-                            <label asp-for="SanThuong" class="control-label"></label>
-                            <input asp-for="SanThuong" class="form-control" />
-                            <span asp-validation-for="SanThuong" class="text-danger"></span>
-                        </div>
-
-                        <!-- Chỗ Để Xe Hơi -->
-                        <div class="form-group">
-                            <label asp-for="ChoDeXeHoi" class="control-label"></label>
-                            <input asp-for="ChoDeXeHoi" class="form-control" />
-                            <span asp-validation-for="ChoDeXeHoi" class="text-danger"></span>
-                        </div>
-
-                        <!-- Địa Chỉ -->
-                        <div class="form-group">
-                            <label asp-for="DiaChi" class="control-label"></label>
-                            <input asp-for="DiaChi" class="form-control" />
-                            <span asp-validation-for="DiaChi" class="text-danger"></span>
-                        </div>
-
-                        <!-- Đường Phố -->
-                        <div class="form-group">
-                            <label asp-for="IdDuongpho" class="control-label"></label>
-                            <select asp-for="IdDuongpho" class="form-control" asp-items="ViewBag.IdDuongpho"></select>
-                            <span asp-validation-for="IdDuongpho" class="text-danger"></span>
-                        </div>
-
-                        <!-- Phương Hướng -->
-                        <div class="form-group">
-                            <label asp-for="IdPhuonghuong" class="control-label"></label>
-                            <select asp-for="IdPhuonghuong" class="form-control" asp-items="ViewBag.IdPhuonghuong"></select>
-                            <span asp-validation-for="IdPhuonghuong" class="text-danger"></span>
-                        </div>
-
-                        <!-- Trạng Thái -->
-                        <div class="form-group">
-                            <label asp-for="IdTrangthai" class="control-label"></label>
-                            <select asp-for="IdTrangthai" class="form-control" asp-items="ViewBag.IdTrangthai"></select>
-                            <span asp-validation-for="IdTrangthai" class="text-danger"></span>
-                        </div>
-
-                        <!-- Nút Thao Tác -->
-                        <div class="form-group row text-right">
-                            <div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-3">
-                                <input type="submit" value="Lưu" class="btn btn-primary" />
-                                <a asp-action="Index" class="btn btn-secondary">Quay lại danh sách</a>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+</html>

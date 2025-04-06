@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Elehaus- Electronics eCommerce Website Template</title>
+    <title>5 CON BÁO</title>
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -61,18 +61,18 @@
                         <div class="header-top-action-area">
                             <div class="header-info-dropdown">
                                 <button type="button" class="btn-info dropdown-toggle" id="dropdownLang"
-                                    data-bs-toggle="dropdown" aria-expanded="false">English</button>
+                                    data-bs-toggle="dropdown" aria-expanded="false">VIE</button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownLang">
-                                    <li class="dropdown-item active">English</li>
-                                    <li class="dropdown-item">Français</li>
+                                    <li class="dropdown-item active">VIE</li>
+                                    <li class="dropdown-item">ENG</li>
                                 </ul>
                             </div>
                             <div class="header-info-dropdown">
                                 <button type="button" class="btn-info dropdown-toggle" id="dropdownCurrency"
-                                    data-bs-toggle="dropdown" aria-expanded="false">USD</button>
+                                    data-bs-toggle="dropdown" aria-expanded="false">VND</button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownCurrency">
-                                    <li class="dropdown-item active">USD</li>
-                                    <li class="dropdown-item">EUR</li>
+                                    <li class="dropdown-item active">VND</li>
+                                    <li class="dropdown-item">USD</li>
                                 </ul>
                             </div>
                         </div>
@@ -96,29 +96,24 @@
                             </div>
                         </div>
                         <div class="col-auto ">
-                            <div class="header-action d-flex align-items-center ">
-                                <button class="btn-search-menu " type="button " data-bs-toggle="offcanvas "
-                                    data-bs-target="#AsideOffcanvasSearch " aria-controls="AsideOffcanvasSearch ">
-                                    <i class="search-icon icon-magnifier "></i>
-                                </button>
-                                <a href="/account " class="header-action-user ">
-                                    <i class="icon icon-user "></i>
-                                </a>
-                                <a class="header-action-wishlist " href="/home ">
-                                    <i class="icon-heart "></i>
-                                </a>
-                                <button class="header-action-cart " type="button " data-bs-toggle="offcanvas "
-                                    data-bs-target="#offcanvasWithCartSidebar "
-                                    aria-controls="offcanvasWithCartSidebar ">
-                                    <i class="cart-icon icon-handbag "></i>
-                                    <span class="cart-count ">01</span>
-                                </button>
-                                <button class="btn-menu d-xl-none me-0 " type="button " data-bs-toggle="offcanvas "
-                                    data-bs-target="#offcanvasWithBothOptions "
-                                    aria-controls="offcanvasWithBothOptions ">
-                                    <i class="fa fa-bars "></i>
-                                </button>
-                            </div>
+                            <% if (user) { %>
+                                <div class="header-action-user d-flex align-items-center gap-2">
+                                    <a href="/account" class="d-flex align-items-center">
+                                        <i class="icon icon-user me-1"></i>
+                                        <span style="color: white;">
+                                            <%= user.name %>
+                                        </span>
+                                    </a>
+                                    <a href="/logout" title="Đăng xuất" class="ms-2"
+                                        style="font-size: 20px; color: rgb(245, 12, 12);">
+                                        <i class="fa fa-power-off"></i>
+                                    </a>
+                                </div>
+                                <% } else { %>
+                                    <a href="/login" class="header-action-user d-flex align-items-center">
+                                        <i class="icon icon-user me-1"></i> Đăng nhập
+                                    </a>
+                                    <% } %>
                         </div>
                     </div>
                 </div>
@@ -143,12 +138,6 @@
                                                     class="text-primary ">25%</span></h4>
                                             <a class="btn btn-white " href="/product ">Mua ngay <i
                                                     class="icon fa fa-arrow-right "></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-sm-5 col-md-5 col-lg-6 ">
-                                        <div class="hero-three-slide-thumb ">
-                                            <img src="/sattic/images/slider/slider3.png " width="499 " height="467 "
-                                                alt="Image ">
                                         </div>
                                     </div>
                                 </div>
@@ -234,370 +223,53 @@
                         <button data-filter=".filterDigitalCamera ">Digital Camera</button>
                     </div>
 
-                    <div class="row masonryGrid mb-n6 ">
-                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-6 masonry-item filterGamming ">
-                            <!--== Start Product Item ==-->
-                            <div class="product-item ">
-                                <a class="product-item-thumb " href="shop-single-product.html ">
-                                    <img src="/static/images/shop/b16.jpg " width="268 " height="256 "
-                                        alt="Image-HasTech ">
-                                </a>
-                                <span class="badges ">-10%</span>
-                                <div class="product-item-action product-item-action--two ">
-                                    <button type="button " class="product-action-btn action-btn-wishlist "
-                                        data-bs-toggle="modal " data-bs-target="#action-WishlistModal ">
-                                        <i class="icon-heart "></i>
-                                    </button>
-                                    <button type="button " class="product-action-btn action-btn-compare "
-                                        data-bs-toggle="modal " data-bs-target="#action-CompareModal ">
-                                        <i class="icon-shuffle "></i>
-                                    </button>
-                                    <button type="button " class="product-action-btn action-btn-quick-view "
-                                        data-bs-toggle="modal " data-bs-target="#action-QuickViewModal ">
-                                        <i class="icon-magnifier "></i>
-                                    </button>
-                                </div>
-                                <div class="product-item-info text-center bg-white pb-6 ">
-                                    <h5 class="product-item-title mb-2 "><a href="shop-single-product.html ">Game Triger
-                                            Finger New Insulated PH-X</a></h5>
-                                    <div class="product-item-price ">$160.00 - <span class="price-old ">$260.00</span>
+                    <div class="row mb-n6">
+                        <% products.forEach(product=> { %>
+                            <div class="col-sm-6 col-lg-6 col-xl-4 mb-6">
+                                <div class="product-item">
+                                    <a class="product-item-thumb" href="/productdetails?id=<%= product.id %>">
+                                        <img src="<%= product.images[0] || '/static/images/default-product.jpg' %>"
+                                            width="270" height="264" alt="<%= product.name %>">
+                                    </a>
+                                    <div class="product-item-action">
+                                        <button type="button" class="product-action-btn action-btn-wishlist"
+                                            data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
+                                            <i class="icon-heart"></i>
+                                        </button>
+                                        <button type="button" class="product-action-btn action-btn-compare"
+                                            data-bs-toggle="modal" data-bs-target="#action-CompareModal">
+                                            <i class="icon-shuffle"></i>
+                                        </button>
+                                        <button type="button" class="product-action-btn action-btn-quick-view"
+                                            data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
+                                            <i class="icon-magnifier"></i>
+                                        </button>
                                     </div>
-                                    <div class="product-item-review-icon ">
-                                        <i class="fa fa-star "></i>
-                                        <i class="fa fa-star "></i>
-                                        <i class="fa fa-star "></i>
-                                        <i class="fa fa-star "></i>
-                                        <i class="fa fa-star "></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--== End Product Item ==-->
-                        </div>
-                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-6 masonry-item filterAudio ">
-                            <!--== Start Product Item ==-->
-                            <div class="product-item ">
-                                <a class="product-item-thumb " href="shop-single-product.html ">
-                                    <img src="/static/images/shop/b17.jpg " width="268 " height="256 "
-                                        alt="Image-HasTech ">
-                                </a>
-                                <span class="badges bg-theme3 ">New</span>
-                                <div class="product-item-action product-item-action--two ">
-                                    <button type="button " class="product-action-btn action-btn-wishlist "
-                                        data-bs-toggle="modal " data-bs-target="#action-WishlistModal ">
-                                        <i class="icon-heart "></i>
-                                    </button>
-                                    <button type="button " class="product-action-btn action-btn-compare "
-                                        data-bs-toggle="modal " data-bs-target="#action-CompareModal ">
-                                        <i class="icon-shuffle "></i>
-                                    </button>
-                                    <button type="button " class="product-action-btn action-btn-quick-view "
-                                        data-bs-toggle="modal " data-bs-target="#action-QuickViewModal ">
-                                        <i class="icon-magnifier "></i>
-                                    </button>
-                                </div>
-                                <div class="product-item-info text-center bg-white pb-6 ">
-                                    <h5 class="product-item-title mb-2 "><a href="shop-single-product.html ">Android
-                                            Television Super New DGT -256</a></h5>
-                                    <div class="product-item-price ">$256.00</div>
-                                    <div class="product-item-review-icon ">
-                                        <i class="fa fa-star "></i>
-                                        <i class="fa fa-star "></i>
-                                        <i class="fa fa-star "></i>
-                                        <i class="fa fa-star "></i>
-                                        <i class="fa fa-star "></i>
+                                    <div class="product-item-info text-center pb-6">
+                                        <h5 class="product-item-title mb-2">
+                                            <a href="/productdetails/<%= product.id %>">
+                                                <%= product.name %>
+                                            </a>
+                                        </h5>
+                                        <div class="product-item-price">$<%= product.price %>
+                                        </div>
+                                        <div class="product-item-review-icon">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star-half-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <!--== End Product Item ==-->
-                        </div>
-                        <div
-                            class="col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-6 masonry-item filterAudio filterGamming filterHeadphone ">
-                            <!--== Start Product Item ==-->
-                            <div class="product-item ">
-                                <a class="product-item-thumb " href="shop-single-product.html ">
-                                    <img src="/static/images/shop/b18.jpg " width="268 " height="256 "
-                                        alt="Image-HasTech ">
-                                </a>
-                                <span class="badges bg-theme4 ">Hot</span>
-                                <div class="product-item-action product-item-action--two ">
-                                    <button type="button " class="product-action-btn action-btn-wishlist "
-                                        data-bs-toggle="modal " data-bs-target="#action-WishlistModal ">
-                                        <i class="icon-heart "></i>
-                                    </button>
-                                    <button type="button " class="product-action-btn action-btn-compare "
-                                        data-bs-toggle="modal " data-bs-target="#action-CompareModal ">
-                                        <i class="icon-shuffle "></i>
-                                    </button>
-                                    <button type="button " class="product-action-btn action-btn-quick-view "
-                                        data-bs-toggle="modal " data-bs-target="#action-QuickViewModal ">
-                                        <i class="icon-magnifier "></i>
-                                    </button>
-                                </div>
-                                <div class="product-item-info text-center bg-white pb-6 ">
-                                    <h5 class="product-item-title mb-2 "><a href="shop-single-product.html ">Headphone
-                                            Supersonic Pew Adi -25</a></h5>
-                                    <div class="product-item-price ">$180.00</div>
-                                    <div class="product-item-review-icon ">
-                                        <i class="fa fa-star "></i>
-                                        <i class="fa fa-star "></i>
-                                        <i class="fa fa-star "></i>
-                                        <i class="fa fa-star "></i>
-                                        <i class="fa fa-star "></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--== End Product Item ==-->
-                        </div>
-                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-6 masonry-item filterAudio filterGamming ">
-                            <!--== Start Product Item ==-->
-                            <div class="product-item ">
-                                <a class="product-item-thumb " href="shop-single-product.html ">
-                                    <img src="/static/images/shop/b19.jpg " width="268 " height="256 "
-                                        alt="Image-HasTech ">
-                                </a>
-                                <span class="badges ">Sold Out</span>
-                                <div class="product-item-action product-item-action--two ">
-                                    <button type="button " class="product-action-btn action-btn-wishlist "
-                                        data-bs-toggle="modal " data-bs-target="#action-WishlistModal ">
-                                        <i class="icon-heart "></i>
-                                    </button>
-                                    <button type="button " class="product-action-btn action-btn-compare "
-                                        data-bs-toggle="modal " data-bs-target="#action-CompareModal ">
-                                        <i class="icon-shuffle "></i>
-                                    </button>
-                                    <button type="button " class="product-action-btn action-btn-quick-view "
-                                        data-bs-toggle="modal " data-bs-target="#action-QuickViewModal ">
-                                        <i class="icon-magnifier "></i>
-                                    </button>
-                                </div>
-                                <div class="product-item-info text-center bg-white pb-6 ">
-                                    <h5 class="product-item-title mb-2 "><a href="shop-single-product.html ">Bluetooth
-                                            Speaker New Without Cable</a></h5>
-                                    <div class="product-item-price ">$280.00</div>
-                                    <div class="product-item-review-icon ">
-                                        <i class="fa fa-star "></i>
-                                        <i class="fa fa-star "></i>
-                                        <i class="fa fa-star "></i>
-                                        <i class="fa fa-star "></i>
-                                        <i class="fa fa-star "></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--== End Product Item ==-->
-                        </div>
-                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-6 masonry-item filterDigitalCamera ">
-                            <!--== Start Product Item ==-->
-                            <div class="product-item ">
-                                <a class="product-item-thumb " href="shop-single-product.html ">
-                                    <img src="/static/images/shop/b20.jpg " width="268 " height="256 "
-                                        alt="Image-HasTech ">
-                                </a>
-                                <span class="badges bg-theme4 ">Hot</span>
-                                <div class="product-item-action product-item-action--two ">
-                                    <button type="button " class="product-action-btn action-btn-wishlist "
-                                        data-bs-toggle="modal " data-bs-target="#action-WishlistModal ">
-                                        <i class="icon-heart "></i>
-                                    </button>
-                                    <button type="button " class="product-action-btn action-btn-compare "
-                                        data-bs-toggle="modal " data-bs-target="#action-CompareModal ">
-                                        <i class="icon-shuffle "></i>
-                                    </button>
-                                    <button type="button " class="product-action-btn action-btn-quick-view "
-                                        data-bs-toggle="modal " data-bs-target="#action-QuickViewModal ">
-                                        <i class="icon-magnifier "></i>
-                                    </button>
-                                </div>
-                                <div class="product-item-info text-center bg-white pb-6 ">
-                                    <h5 class="product-item-title mb-2 "><a href="shop-single-product.html ">Headphone
-                                            Supersonic Pew Adi -25</a></h5>
-                                    <div class="product-item-price ">$256</div>
-                                    <div class="product-item-review-icon ">
-                                        <i class="fa fa-star "></i>
-                                        <i class="fa fa-star "></i>
-                                        <i class="fa fa-star "></i>
-                                        <i class="fa fa-star "></i>
-                                        <i class="fa fa-star "></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--== End Product Item ==-->
-                        </div>
-                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-6 masonry-item filterAudio filterGamming ">
-                            <!--== Start Product Item ==-->
-                            <div class="product-item ">
-                                <a class="product-item-thumb " href="shop-single-product.html ">
-                                    <img src="/static/images/shop/b21.jpg " width="268 " height="256 "
-                                        alt="Image-HasTech ">
-                                </a>
-                                <span class="badges ">-10%</span>
-                                <div class="product-item-action product-item-action--two ">
-                                    <button type="button " class="product-action-btn action-btn-wishlist "
-                                        data-bs-toggle="modal " data-bs-target="#action-WishlistModal ">
-                                        <i class="icon-heart "></i>
-                                    </button>
-                                    <button type="button " class="product-action-btn action-btn-compare "
-                                        data-bs-toggle="modal " data-bs-target="#action-CompareModal ">
-                                        <i class="icon-shuffle "></i>
-                                    </button>
-                                    <button type="button " class="product-action-btn action-btn-quick-view "
-                                        data-bs-toggle="modal " data-bs-target="#action-QuickViewModal ">
-                                        <i class="icon-magnifier "></i>
-                                    </button>
-                                </div>
-                                <div class="product-item-info text-center bg-white pb-6 ">
-                                    <h5 class="product-item-title mb-2 "><a href="shop-single-product.html ">Game Triger
-                                            Finger New Insulated PH-X</a></h5>
-                                    <div class="product-item-price ">$129</div>
-                                    <div class="product-item-review-icon ">
-                                        <i class="fa fa-star "></i>
-                                        <i class="fa fa-star "></i>
-                                        <i class="fa fa-star "></i>
-                                        <i class="fa fa-star "></i>
-                                        <i class="fa fa-star "></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--== End Product Item ==-->
-                        </div>
-                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-6 masonry-item filterAudio filterGamming ">
-                            <!--== Start Product Item ==-->
-                            <div class="product-item ">
-                                <a class="product-item-thumb " href="shop-single-product.html ">
-                                    <img src="/static/images/shop/b17.jpg " width="268 " height="256 "
-                                        alt="Image-HasTech ">
-                                </a>
-                                <span class="badges bg-theme3 ">New</span>
-                                <div class="product-item-action product-item-action--two ">
-                                    <button type="button " class="product-action-btn action-btn-wishlist "
-                                        data-bs-toggle="modal " data-bs-target="#action-WishlistModal ">
-                                        <i class="icon-heart "></i>
-                                    </button>
-                                    <button type="button " class="product-action-btn action-btn-compare "
-                                        data-bs-toggle="modal " data-bs-target="#action-CompareModal ">
-                                        <i class="icon-shuffle "></i>
-                                    </button>
-                                    <button type="button " class="product-action-btn action-btn-quick-view "
-                                        data-bs-toggle="modal " data-bs-target="#action-QuickViewModal ">
-                                        <i class="icon-magnifier "></i>
-                                    </button>
-                                </div>
-                                <div class="product-item-info text-center bg-white pb-6 ">
-                                    <h5 class="product-item-title mb-2 "><a href="shop-single-product.html ">Android
-                                            Television Super New DGT -256</a></h5>
-                                    <div class="product-item-price ">$190</div>
-                                    <div class="product-item-review-icon ">
-                                        <i class="fa fa-star "></i>
-                                        <i class="fa fa-star "></i>
-                                        <i class="fa fa-star "></i>
-                                        <i class="fa fa-star "></i>
-                                        <i class="fa fa-star "></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--== End Product Item ==-->
-                        </div>
-                        <div
-                            class="col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-6 masonry-item filterGamming filterHeadphone ">
-                            <!--== Start Product Item ==-->
-                            <div class="product-item ">
-                                <a class="product-item-thumb " href="shop-single-product.html ">
-                                    <img src="/static/images/shop/b22.jpg " width="268 " height="256 "
-                                        alt="Image-HasTech ">
-                                </a>
-                                <span class="badges ">-10%</span>
-                                <div class="product-item-action product-item-action--two ">
-                                    <button type="button " class="product-action-btn action-btn-wishlist "
-                                        data-bs-toggle="modal " data-bs-target="#action-WishlistModal ">
-                                        <i class="icon-heart "></i>
-                                    </button>
-                                    <button type="button " class="product-action-btn action-btn-compare "
-                                        data-bs-toggle="modal " data-bs-target="#action-CompareModal ">
-                                        <i class="icon-shuffle "></i>
-                                    </button>
-                                    <button type="button " class="product-action-btn action-btn-quick-view "
-                                        data-bs-toggle="modal " data-bs-target="#action-QuickViewModal ">
-                                        <i class="icon-magnifier "></i>
-                                    </button>
-                                </div>
-                                <div class="product-item-info text-center bg-white pb-6 ">
-                                    <h5 class="product-item-title mb-2 "><a href="shop-single-product.html ">Game Triger
-                                            Finger New Insulated PH-X</a></h5>
-                                    <div class="product-item-price ">$160.00 - <span class="price-old ">$260.00</span>
-                                    </div>
-                                    <div class="product-item-review-icon ">
-                                        <i class="fa fa-star "></i>
-                                        <i class="fa fa-star "></i>
-                                        <i class="fa fa-star "></i>
-                                        <i class="fa fa-star "></i>
-                                        <i class="fa fa-star "></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--== End Product Item ==-->
-                        </div>
+                            <% }) %>
                     </div>
+
                 </div>
             </div>
             <!--== End Product Filter Area Wrapper ==-->
-            <!--== Start Product Banner Area Wrapper ==-->
-            <div class="product-banner-area ">
-                <div class="container ">
-                    <div class="row mb-n6 ">
-                        <div class="col-sm-6 col-md-6 col-lg-4 mb-6 ">
-                            <!--== Start Product Banner Item ==-->
-                            <div class="product-banner-item ">
-                                <div class="product-banner-thumb ">
-                                    <img src="/static/images/shop/banner/1.jpg " width="370 " height="287 "
-                                        alt="Image-HasTech ">
-                                </div>
-                                <div class="product-banner-content ">
-                                    <h5 class="product-banner-desc ">Get 50% Off</h5>
-                                    <h2 class="product-banner-title ">Smart Phone <span class="d-block ">With Pen</span>
-                                    </h2>
-                                    <a class="btn-link " href="shop.html ">Shop Now <i
-                                            class="icon fa fa-arrow-right "></i></a>
-                                </div>
-                            </div>
-                            <!--== End Product Banner Item ==-->
-                        </div>
-                        <div class="col-sm-6 col-md-6 col-lg-4 mb-6 ">
-                            <!--== Start Product Banner Item ==-->
-                            <div class="product-banner-item ">
-                                <div class="product-banner-thumb ">
-                                    <img src="/static/images/shop/banner/2.jpg " width="370 " height="287 "
-                                        alt="Image-HasTech ">
-                                </div>
-                                <div class="product-banner-content ">
-                                    <h5 class="product-banner-desc ">Get 50% Off</h5>
-                                    <h2 class="product-banner-title ">Gaming Pad <span class="d-block ">& Handel</span>
-                                    </h2>
-                                    <a class="btn-link " href="shop.html ">Shop Now <i
-                                            class="icon fa fa-arrow-right "></i></a>
-                                </div>
-                            </div>
-                            <!--== End Product Banner Item ==-->
-                        </div>
-                        <div class="col-sm-6 col-md-6 col-lg-4 mb-6 ">
-                            <!--== Start Product Banner Item ==-->
-                            <div class="product-banner-item ">
-                                <div class="product-banner-thumb ">
-                                    <img src="/static/images/shop/banner/3.jpg " width="370 " height="287 "
-                                        alt="Image-HasTech ">
-                                </div>
-                                <div class="product-banner-content ">
-                                    <h5 class="product-banner-desc ">Get 50% Off</h5>
-                                    <h2 class="product-banner-title ">Smart Speaker <span class="d-block ">&
-                                            assistant</span></h2>
-                                    <a class="btn-link " href="shop.html ">Shop Now <i
-                                            class="icon fa fa-arrow-right "></i></a>
-                                </div>
-                            </div>
-                            <!--== End Product Banner Item ==-->
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--== End Product Banner Area Wrapper ==-->
+
 
             <!--== Start News Letter Area Wrapper ==-->
             <div class="newsletter-area section-top-space bg-img ">

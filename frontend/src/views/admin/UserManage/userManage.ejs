@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="/static/admin/libs/css/style.css">
     <link rel="stylesheet" href="/static/admin/vendor/fonts/fontawesome/css/fontawesome-all.css">
     <link rel="stylesheet" href="/static/admin/vendor/charts/chartist-bundle/chartist.css">
-    <title>Concept - Bootstrap 4 Admin Dashboard Template</title>
+    <title>Quản lý người dùng</title>
     <meta name="robots" content="noindex, nofollow">
     <script nonce="bea0a831-0822-4b06-8312-50544fd9fd85">
         try {
@@ -95,7 +95,7 @@
 
         <div class="dashboard-header">
             <nav class="navbar navbar-expand-lg bg-white fixed-top">
-                <a class="navbar-brand" href="https://colorlib.com//polygon/concept/index.html">Concept</a>
+                <a class="navbar-brand" href="https://colorlib.com//polygon/concept/index.html">5 con báo</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -142,8 +142,7 @@
                             <div class="dropdown-menu dropdown-menu-right nav-user-dropdown"
                                 aria-labelledby="navbarDropdownMenuLink2">
                                 <div class="nav-user-info">
-                                    <h5 class="mb-0 text-white nav-user-name">
-                                        Trịnh Tuấn Đan</h5>
+                                    <h5 class="mb-0 text-white nav-user-name">5 Con Báo</h5>
                                     <span class="status"></span><span class="ml-2">Bio</span>
                                 </div>
                                 <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i>Tài Khoản </a>
@@ -163,40 +162,51 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="page-header">
-                            <h2 class="pageheader-title">Chartist.js </h2>
-                            <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce
-                                sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
-                            <div class="page-breadcrumb">
-                                <nav aria-label="breadcrumb">
-                                    <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a>
-                                        </li>
-                                        <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Charts</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Chartist.js</li>
-                                    </ol>
-                                </nav>
-                            </div>
+                            <h2 class="pageheader-title">Danh Sách Người Dùng</h2>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                        <div class="card">
-                            <h5 class="card-header">Simple Line Chart</h5>
-                            <div class="card-body">
-                                <div class="ct-chart-line ct-golden-section"></div>
-                            </div>
+                <div class="container">
+                    <% if (error) { %>
+                        <div class="alert alert-danger">
+                            <%= error %>
                         </div>
-                    </div>
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                        <div class="card">
-                            <h5 class="card-header">Holes In Data</h5>
-                            <div class="card-body">
-                                <div class="ct-chart-holes ct-golden-section"></div>
-                            </div>
-                        </div>
-                    </div>
+                        <% } %>
+
+                            <table class="table table-bordered">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Tên</th>
+                                        <th>Tuổi</th>
+                                        <th>Vai trò</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% users.forEach(function(user) { %>
+                                        <tr>
+                                            <td>
+                                                <%= user.id %>
+                                            </td>
+                                            <td>
+                                                <%= user.name %>
+                                            </td>
+                                            <td>
+                                                <%= user.age %>
+                                            </td>
+                                            <td>
+                                                <%= user.role %>
+                                            </td>
+                                            <td>
+                                                <a href="/UserDetails?id=<%= user.id %>" class="btn btn-info btn-sm">Xem
+                                                    chi tiết</a>
+                                            </td>
+                                        </tr>
+                                        <% }) %>
+                                </tbody>
+                            </table>
                 </div>
+
             </div>
             <div class="footer">
                 <%- include('../partical/footerManage') %>
