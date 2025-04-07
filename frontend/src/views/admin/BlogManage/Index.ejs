@@ -94,82 +94,83 @@
 
 
         <%- include('../partical/headerManage') %>
-        <div class="nav-left-sidebar sidebar-dark">
-            <%- include('../partical/menuManage') %>
-        </div>
-        <div class="dashboard-wrapper">
-            <div class="container-fluid  dashboard-content">
-                <div class="row">
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="page-header">
-                            <h2 class="pageheader-title">Danh Sách Sản Phẩm </h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="card">
-                            <p>
-                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                <a href="/BlogManage/Create" class="btn btn-primary">Thêm Bài Viết</a>
+            <div class="nav-left-sidebar sidebar-dark">
+                <%- include('../partical/menuManage') %>
+            </div>
+            <div class="dashboard-wrapper">
+                <div class="container-fluid  dashboard-content">
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="page-header">
+                                <h2 class="pageheader-title">Danh Sách Bài Viết </h2>
                             </div>
-                            </p>
                         </div>
-                        <div class="card-body">
-                            <% if (error) { %>
-                                <div class="alert alert-danger">
-                                    <%= error %>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="card">
+                                <p>
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <a href="/BlogManage/Create" class="btn btn-primary">Thêm Bài Viết</a>
                                 </div>
-                                <% } %>
+                                </p>
+                            </div>
+                            <div class="card-body">
+                                <% if (error) { %>
+                                    <div class="alert alert-danger">
+                                        <%= error %>
+                                    </div>
+                                    <% } %>
 
-                                    <% if (blogs && blogs.length> 0) { %>
-                                        <table class="table table-bordered">
-                                            <thead>
-                                                <tr>
-                                                    <th>Ảnh</th>
-                                                    <th>Tiêu đề</th>
-                                                    <th>Tác giả</th>
-                                                    <th>Ngày tạo</th>
-                                                    <th>Hành động</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <% blogs.forEach(blog=> { %>
+                                        <% if (blogs && blogs.length> 0) { %>
+                                            <table class="table table-bordered">
+                                                <thead>
                                                     <tr>
-                                                        <td><img src="<%= blog.thumbnail %>" style="height: 60px;"></td>
-                                                        <td>
-                                                            <%= blog.title %>
-                                                        </td>
-                                                        <td>
-                                                            <%= blog.author %>
-                                                        </td>
-                                                        <td>
-                                                            <%= blog.createdAt.toLocaleDateString('vi-VN') %>
-                                                        </td>
-                                                        <td>
-                                                            <a href="/BlogManage/Details?id=<%= blog.id %>"
-                                                                class="btn btn-info btn-sm">Xem</a>
-                                                            <a href="/BlogManage/Edit?id=<%= blog.id %>"
-                                                                class="btn btn-warning btn-sm">Sửa</a>
-                                                            <a href="/BlogManage/Delete?id=<%= blog.id %>"
-                                                                class="btn btn-danger btn-sm">Xoá</a>
-                                                        </td>
+                                                        <th>Ảnh</th>
+                                                        <th>Tiêu đề</th>
+                                                        <th>Tác giả</th>
+                                                        <th>Ngày tạo</th>
+                                                        <th>Hành động</th>
                                                     </tr>
-                                                    <% }) %>
-                                            </tbody>
-                                        </table>
-                                        <% } else { %>
-                                            <p>Không có bài viết nào.</p>
-                                            <% } %>
-                        </div>
+                                                </thead>
+                                                <tbody>
+                                                    <% blogs.forEach(blog=> { %>
+                                                        <tr>
+                                                            <td><img src="<%= blog.thumbnail %>" style="height: 60px;">
+                                                            </td>
+                                                            <td>
+                                                                <%= blog.title %>
+                                                            </td>
+                                                            <td>
+                                                                <%= blog.author %>
+                                                            </td>
+                                                            <td>
+                                                                <%= blog.createdAt.toLocaleDateString('vi-VN') %>
+                                                            </td>
+                                                            <td>
+                                                                <a href="/BlogManage/Details?id=<%= blog.id %>"
+                                                                    class="btn btn-info btn-sm">Xem</a>
+                                                                <a href="/BlogManage/Edit?id=<%= blog.id %>"
+                                                                    class="btn btn-warning btn-sm">Sửa</a>
+                                                                <a href="/BlogManage/Delete?id=<%= blog.id %>"
+                                                                    class="btn btn-danger btn-sm">Xoá</a>
+                                                            </td>
+                                                        </tr>
+                                                        <% }) %>
+                                                </tbody>
+                                            </table>
+                                            <% } else { %>
+                                                <p>Không có bài viết nào.</p>
+                                                <% } %>
+                            </div>
 
+                        </div>
                     </div>
                 </div>
+                <div class="footer">
+                    <%- include('../partical/footerManage') %>
+                </div>
             </div>
-            <div class="footer">
-                <%- include('../partical/footerManage') %>
-            </div>
-        </div>
     </div>
     <script src="https://colorlib.com//polygon/concept/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
     <script src="https://colorlib.com//polygon/concept/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>

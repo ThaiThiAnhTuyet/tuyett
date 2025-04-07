@@ -1,5 +1,4 @@
 // D:\DaiHocHutechKhoa2021\41.NgoNguPhatTrienMoi\website_bandienthoai_nodejs_javascript_mongodb\backend\src\services\orderService.js
-
 const Cart = require("../models/cart");
 const Order = require("../models/order");
 const Product = require("../models/product");
@@ -20,6 +19,22 @@ class OrderService {
     async getCart(userId) {
         return await Cart.find({ userId }).populate("productId");
     }
+
+    async updateCart(userId, productId, quantity) {
+    if (quantity < 1) {
+        throw new Error("Số lượng phải lớn hơn 0");
+    }
+
+    const cartItem = await Cart.findOne({ userId, productId });
+    if (!cartItem) {
+        throw new Error("Sản phẩm không tồn tại trong giỏ hàng");
+    }
+
+    cartItem.quantity = quantity;
+    await cartItem.save();
+    return cartItem;
+    }
+
 
     async removeFromCart(userId, productId) {
         return await Cart.findOneAndDelete({ userId, productId });

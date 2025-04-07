@@ -30,6 +30,20 @@ router.get("/cart", verifyToken, checkMultiRole(["admin", "user"]), async (req, 
         res.status(500).json({ message: "Lỗi server" });
     }
 });
+// ✅ Cập nhật giỏ hàng
+// Cập nhật số lượng sản phẩm trong giỏ hàng
+router.post("/update-cart", verifyToken, checkMultiRole(["admin", "user"]), async (req, res) => {
+    try {
+        const { productId, quantity } = req.body;
+        const userId = req.userData.user._id;
+
+        const updatedCartItem = await orderService.updateCart(userId, productId, quantity);
+        res.json({ message: "✅ Đã cập nhật số lượng sản phẩm", cartItem: updatedCartItem });
+    } catch (err) {
+        console.error("❌ Lỗi cập nhật giỏ hàng:", err.message);
+        res.status(400).json({ message: "❌ " + err.message });
+    }
+});
 
 // ✅ Xoá khỏi giỏ
 router.delete("/remove-from-cart", verifyToken, checkMultiRole(["admin", "user"]), async (req, res) => {
