@@ -7,4 +7,35 @@
       <li class="main-nav-item has-submenu"><a class="main-nav-link" href="/blog">Bài Viết </a>
       </li>
       <li class="main-nav-item"><a class="main-nav-link" href="/lienhe">Liên Hệ</a></li>
+      <li class="main-nav-item has-submenu cart-dropdown">
+            <a class="main-nav-link" href="#">
+                  <i class="fa fa-shopping-cart fa-2x"></i>
+            </a>
+            <ul class="submenu cart-submenu">
+                  <li><a href="/order/cart">🛒 Giỏ hàng</a></li>
+                  <li><a href="/order/history">📦 Lịch sử đơn hàng</a></li>
+            </ul>
+      </li>
+      <div class="col-auto">
+            <% if (user) { %>
+                  <div class="header-action-user d-flex align-items-center gap-2">
+                        <a href="/account" class="d-flex align-items-center">
+                              <i class="icon icon-user me-1"></i>
+                              <span style="color: rgb(92, 5, 241);">
+                                    <%= user.name || "Người dùng" %>
+                                          <!-- Hiển thị tên hoặc "Người dùng" nếu name không tồn tại -->
+                              </span>
+                        </a>
+                        <a href="/logout" title="Đăng xuất" class="ms-2"
+                              style="font-size: 20px; color: rgb(245, 12, 12);">
+                              <i class="fa fa-power-off"></i>
+                        </a>
+                  </div>
+                  <% } else { %>
+                        <a href="/login" class="header-action-user d-flex align-items-center">
+                              <i class="icon icon-user me-1"></i> Đăng nhập
+                        </a>
+                        <% } %>
+      </div>
+
 </ul>
