@@ -9,7 +9,7 @@ const BlogService = require("../../services/blogService");
 const blogService = new BlogService();
 
 // ✅ GET: Lấy tất cả bài viết
-router.get("/list",verifyToken, checkMultiRole(["admin", "user"]), async (req, res) => {
+router.get("/list", async (req, res) => {
     try {
         const blogs = await blogService.getAll();
         res.json({ status: true, data: blogs });
@@ -20,7 +20,7 @@ router.get("/list",verifyToken, checkMultiRole(["admin", "user"]), async (req, r
 });
 
 // ✅ GET: Lấy 1 bài viết theo ID
-router.get("/detail",verifyToken, checkMultiRole(["admin", "user"]), async (req, res) => {
+router.get("/detail", async (req, res) => {
     try {
         const blog = await blogService.getById(req.query.id);
         if (!blog) return res.status(404).json({ message: "Không tìm thấy bài viết" });

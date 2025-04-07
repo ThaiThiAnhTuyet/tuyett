@@ -22,8 +22,11 @@ app.use(session({
 }));
 
 
+// Middleware để truyền thông tin người dùng vào tất cả các view
 app.use((req, res, next) => {
-    res.locals.user = req.session.user || null;
+    res.locals.user = req.session.user || null; // Truyền `user` vào view
+    res.locals.role = req.session.role || null;// Truyền `role` vào view
+    res.locals.token = req.session.token || null; // Truyền `token` vào view
     next();
 });
 

@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const axios = require("axios");
 const ProductModel = require("../models/ProductModel");
+const checkRole = require("../middleware/checkRole");
 
 router.get("/", async (req, res) => {
     try {

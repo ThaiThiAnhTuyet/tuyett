@@ -1,13 +1,21 @@
-//D:\DaiHocHutechKhoa2021\41.NgoNguPhatTrienMoi\website_bandienthoai_nodejs_javascript_mongodb\frontend\src\controllers\ordercontroller.js
 const express = require("express");
 const router = express.Router();
 const axios = require("axios");
 const CartModel = require("../models/CartModel");
 const OrderModel = require("../models/OrderModel");
 
+// Middleware kiểm tra người dùng đã đăng nhập
+function ensureAuthenticated(req, res, next) {
+    const token = req.session.token;
+    if (!token) {
+        return res.redirect("/login"); // Chuyển hướng đến trang đăng nhập nếu chưa đăng nhập
+    }
+    next();
+}
+
 // Middleware kiểm tra vai trò user
 router.use((req, res, next) => {
-    if (req.isAdmin) {
+    if (req.session.role === "admin") {
         return res.status(403).render("unauthorized", {
             message: "Trang này chỉ dành cho người dùng."
         });
@@ -15,10 +23,8 @@ router.use((req, res, next) => {
     next();
 });
 
-
 // Route thêm vào giỏ hàng
-// Các route dành cho user
-router.post("/add-to-cart", async (req, res) => {
+router.post("/add-to-cart", ensureAuthenticated, async (req, res) => {
     try {
         const { productId, quantity } = req.body;
         const token = req.session.token;

@@ -9,7 +9,7 @@ const CategoryService = require("../../services/categoryService");
 const categoryService = new CategoryService();
 
 // ✅ GET: Lấy danh sách category
-router.get("/category-list", verifyToken, checkMultiRole(["admin", "user"]), async (req, res) => {
+router.get("/category-list",  async (req, res) => {
     try {
         const categories = await categoryService.getAll();
         res.json({ status: true, data: categories });

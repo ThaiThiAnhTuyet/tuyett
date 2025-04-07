@@ -2,29 +2,28 @@ const axios = require("axios");
 
 module.exports = async function (req, res, next) {
     const token = req.session.token;
+    const role = req.session.role;
 
     if (!token) {
         return res.redirect("/login"); // Chuyển hướng đến trang đăng nhập nếu chưa đăng nhập
     }
 
     try {
-        // Gọi API để lấy thông tin người dùng
-        const response = await axios.get("http://localhost:5000/api/auth/me", {
+        // Kiểm tra token hợp lệ
+        const response = await axios.get("http://localhost:5000/api/auth/test-security", {
             headers: { Authorization: `Bearer ${token}` }
         });
 
-        const user = response.data.user;
-        req.session.user = user; // Lưu thông tin người dùng vào session
-
-        if (user.role === "admin") {
-            req.isAdmin = true; // Đánh dấu người dùng là admin
+        // Kiểm tra role
+        if (role === "admin") {
+            return res.redirect("/UserManage");
+        } else if (role === "user") {
+            return res.redirect("/home");
         } else {
-            req.isAdmin = false; // Đánh dấu người dùng là user
+            return res.status(403).render("unauthorized", { message: "Vai trò không hợp lệ" });
         }
-
-        next(); // Tiếp tục xử lý
     } catch (err) {
-        console.error("❌ Lỗi kiểm tra vai trò người dùng:", err.message);
-        return res.redirect("/login"); // Chuyển hướng đến trang đăng nhập nếu có lỗi
+        console.error("❌ Lỗi xác thực token:", err.message);
+        return res.redirect("/login");
     }
 };

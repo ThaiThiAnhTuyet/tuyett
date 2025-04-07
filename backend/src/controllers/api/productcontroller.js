@@ -9,7 +9,7 @@ const ProductService = require("../../services/productService");
 const productService = new ProductService();
 
 // ✅ GET: Lấy tất cả sản phẩm
-router.get("/product-list",verifyToken, checkMultiRole(["admin", "user"]), async (req, res) => {
+router.get("/product-list", async (req, res) => {
     try {
         const { category } = req.query;
         const filter = {};
@@ -28,7 +28,7 @@ router.get("/product-list",verifyToken, checkMultiRole(["admin", "user"]), async
 });
 
 // ✅ GET: Lấy 1 sản phẩm theo ID
-router.get("/product-detail",verifyToken, checkMultiRole(["admin", "user"]), async (req, res) => {
+router.get("/product-detail", async (req, res) => {
     try {
         const product = await productService.getById(req.query.id);
         if (!product) return res.status(404).json({ message: "Không tìm thấy sản phẩm" });

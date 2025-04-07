@@ -9,15 +9,26 @@ const checkAdminToken = require("../../middleware/checkRole");
 
 // Middleware kiểm tra vai trò admin
 router.use((req, res, next) => {
-    if (!req.isAdmin) {
+    const role = req.session.role;
+
+    if (!req.session.token) {
+        return res.redirect("/login"); // Chuyển hướng nếu chưa đăng nhập
+    }
+
+    if (role === "user") {
+        return res.redirect("http://localhost:3000/home"); // Điều hướng user đến trang home
+    }
+
+    if (role !== "admin") {
         return res.status(403).render("unauthorized", {
             message: "Bạn không có quyền truy cập vào trang quản trị."
         });
     }
-    next();
+
+    next(); // Tiếp tục xử lý nếu là admin
 });
 
-// Các route quản trị
+// Route quản lý người dùng
 router.get("/UserManage", async function (req, res) {
     const token = req.session.token;
 

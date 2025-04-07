@@ -32,8 +32,7 @@
                 <div class="col-auto">
                     <div class="header-logo-area">
                         <a href="index.html">
-                            <img class="logo-main" src="/static/images/logo.png" width="182" height="31"
-                                alt="Logo">
+                            <img class="logo-main" src="/static/images/logo.png" width="182" height="31" alt="Logo">
                         </a>
                     </div>
                 </div>
@@ -48,13 +47,14 @@
                         <%- include('../partical/menu') %>
                     </div>
                 </div>
-                <div class="col-auto ">
+                <div class="col-auto">
                     <% if (user) { %>
                         <div class="header-action-user d-flex align-items-center gap-2">
                             <a href="/account" class="d-flex align-items-center">
                                 <i class="icon icon-user me-1"></i>
                                 <span style="color: rgb(92, 5, 241);">
-                                    <%= user.name %>
+                                    <%= user.name || "Người dùng" %>
+                                        <!-- Hiển thị tên hoặc "Người dùng" nếu name không tồn tại -->
                                 </span>
                             </a>
                             <a href="/logout" title="Đăng xuất" class="ms-2"

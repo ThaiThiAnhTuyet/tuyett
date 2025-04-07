@@ -227,7 +227,7 @@
                         <% products.forEach(product=> { %>
                             <div class="col-sm-6 col-lg-6 col-xl-4 mb-6">
                                 <div class="product-item">
-                                    <a class="product-item-thumb" href="/productdetails?id=<%= product.id %>">
+                                    <a class="product-item-thumb" href="/productdetails/<%= product.id %>">
                                         <img src="<%= product.images[0] || '/static/images/default-product.jpg' %>"
                                             width="270" height="264" alt="<%= product.name %>">
                                     </a>

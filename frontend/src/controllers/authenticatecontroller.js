@@ -12,7 +12,7 @@ router.get("/register", (req, res) => {
 // Xử lý đăng ký
 router.post("/register", async (req, res) => {
     try {
-        const body = { ...req.body, role: "user" }; // ✅ Gán mặc định role
+        const body = { ...req.body, role: "user" }; // Gán mặc định role là "user"
         const response = await axios.post("http://localhost:5000/api/auth/register", body);
 
         const user = new UserModel(response.data.user);
@@ -36,16 +36,19 @@ router.post("/login", async (req, res) => {
         const response = await axios.post("http://localhost:5000/api/auth/login", req.body);
         const { token, user } = response.data;
 
-        res.cookie("token", token, { httpOnly: true });
-        req.session.token = token; // Lưu token vào session
-        req.session.user = new UserModel(user); // Lưu thông tin user vào session dưới dạng UserModel
+        // Lưu token và role vào session
+        req.session.token = token;
+        req.session.role = user.role;
+        req.session.user = user; // Lưu toàn bộ thông tin người dùng vào session
 
+        // Điều hướng dựa trên role
         if (user.role === "admin") {
-            return res.redirect("/UserManage");
+            return res.redirect("http://localhost:3000/UserManage");
+        } else if (user.role === "user") {
+            return res.redirect("http://localhost:3000/home");
         } else {
-            return res.redirect("/account"); // ⚠️ PHẢI LÀ /account mới đúng
+            return res.render("NguoiDung/login", { error: "❌ Vai trò không hợp lệ" });
         }
-        
     } catch (err) {
         res.render("NguoiDung/login", { error: "❌ Đăng nhập thất bại: " + (err.response?.data?.message || err.message) });
     }
