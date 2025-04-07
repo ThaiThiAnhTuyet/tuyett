@@ -2,7 +2,7 @@
 <html class="no-js" lang="zxx">
 
 
-<!-- Mirrored from htmldemo.net/elehaus/elehaus/shop-single-product-variable.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Jun 2024 08:39:18 GMT -->
+<!-- Mirrored from htmldemo.net/elehaus/elehaus/about-us.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Jun 2024 08:39:27 GMT -->
 
 <head>
     <meta charset="utf-8">
@@ -35,16 +35,12 @@
 
     <!-- Style CSS -->
     <link rel="stylesheet" href="/static/css/style.css">
-    <link rel="stylesheet" href="/static/css/productdetail.css">
 
 </head>
 
 <body>
-
-    <!--== Wrapper Start ==-->
     <div class="wrapper">
-
-        <%- include('../partical/header'); %>
+        <%- include('../partical/header') %>
             <main class="main-content">
 
                 <!--== Start Page Header Area Wrapper ==-->
@@ -53,10 +49,10 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="page-header-content">
-                                    <h2 class="page-header-title">Products</h2>
+                                    <h2 class="page-header-title">Giỏ Hàng</h2>
                                     <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="index.html">Home //</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Single Product</li>
+                                        <li class="breadcrumb-item"><a href="/home">Trang Chủ //</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Giỏ Hàng</li>
                                     </ol>
                                 </div>
                             </div>
@@ -69,106 +65,120 @@
                         </div>
                     </div>
                 </div>
-                <!----------------------------------------------------------------------------------------->
-                <% if (product) { %>
-                    <section class="product-detail-area section-space">
-                        <div class="container">
-                            <div class="row">
-                                <!-- Swiper ảnh lớn -->
-                                <div class="swiper main-slider border rounded p-2 mb-3 bg-light" style="height: 400px;">
-                                    <div class="swiper-wrapper">
-                                        <% product.images.forEach(function(img) { %>
-                                            <div class="swiper-slide d-flex align-items-center justify-content-center"
-                                                style="height: 100%;">
-                                                <img src="<%= img %>" class="h-100" style="object-fit: contain;" />
-                                            </div>
-                                            <% }) %>
+                <!-- --------------------------------------------------------------------------------------------------------->
+                <!--== Start Product Cart Area Wrapper ==-->
+                <div class="product-area section-space">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="cart-table-wrap">
+                                    <div class="table-responsive">
+                                        <table class="cart-table">
+                                            <thead>
+                                                <tr>
+                                                    <th class="width-thumbnail"></th>
+                                                    <th class="width-name">Product</th>
+                                                    <th class="width-price">Price</th>
+                                                    <th class="width-quantity">Quantity</th>
+                                                    <th class="width-subtotal">Subtotal</th>
+                                                    <th class="width-remove"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% if (cartItems.length> 0) { %>
+                                                    <% cartItems.forEach(item=> { %>
+                                                        <tr>
+                                                            <td class="product-thumbnail">
+                                                                <a href="/productdetails/<%= item.product.id %>">
+                                                                    <img class="w-100"
+                                                                        src="<%= item.product.images[0] || '/static/images/default-product.jpg' %>"
+                                                                        alt="<%= item.product.name %>" width="96"
+                                                                        height="96">
+                                                                </a>
+                                                            </td>
+                                                            <td class="product-name">
+                                                                <h5>
+                                                                    <a href="/productdetails/<%= item.product.id %>">
+                                                                        <%= item.product.name %>
+                                                                    </a>
+                                                                </h5>
+                                                            </td>
+                                                            <td class="product-price">
+                                                                <span class="amount">
+                                                                    <%= item.product.price.toLocaleString('vi-VN') %>₫
+                                                                </span>
+                                                            </td>
+                                                            <td class="cart-quality">
+                                                                <form method="POST" action="/order/update-cart">
+                                                                    <input type="hidden" name="productId"
+                                                                        value="<%= item.product.id %>">
+                                                                    <div class="product-details-quality">
+                                                                        <input type="number" name="quantity"
+                                                                            value="<%= item.quantity %>" min="1"
+                                                                            class="form-control">
+                                                                        <button type="submit"
+                                                                            class="btn btn-primary btn-sm mt-2">Update</button>
+                                                                    </div>
+                                                                </form>
+                                                            </td>
+                                                            <td class="product-total">
+                                                                <span>
+                                                                    <%= (item.product.price *
+                                                                        item.quantity).toLocaleString('vi-VN') %>₫
+                                                                </span>
+                                                            </td>
+                                                            <td class="product-remove">
+                                                                <form method="POST" action="/order/remove-from-cart">
+                                                                    <input type="hidden" name="productId"
+                                                                        value="<%= item.product.id %>">
+                                                                    <button type="submit" class="btn btn-danger btn-sm">
+                                                                        <i class="fa fa-trash-o"></i>
+                                                                    </button>
+                                                                </form>
+                                                            </td>
+                                                        </tr>
+                                                        <% }) %>
+                                                            <% } else { %>
+                                                                <tr>
+                                                                    <td colspan="6" class="text-center">
+                                                                        <div class="alert alert-warning">
+                                                                            Your cart is empty. <a
+                                                                                href="/product">Continue
+                                                                                shopping</a>.
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <% } %>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
-
-                                <!-- Swiper ảnh nhỏ (thumbnail) -->
-                                <div class="swiper thumb-slider" style="padding-top: 10px;">
-                                    <div class="swiper-wrapper">
-                                        <% product.images.forEach(function(img) { %>
-                                            <div class="swiper-slide"
-                                                style="width: 70px; height: 70px; cursor: pointer;">
-                                                <img src="<%= img %>" class="w-100 h-100 img-thumbnail"
-                                                    style="object-fit: cover;" />
-                                            </div>
-                                            <% }) %>
+                                <div class="cart-shiping-update-wrapper">
+                                    <div class="cart-shiping-btn continure-btn">
+                                        <a class="btn btn-link" href="/product"><i class="fa fa-angle-left"></i> Back To
+                                            Shop</a>
                                     </div>
+                                    <% if (cartItems.length> 0) { %>
+                                        <div class="cart-shiping-btn update-btn">
+                                            <form method="POST" action="/order/checkout">
+                                                <button type="submit" class="btn btn-success">Proceed to
+                                                    Checkout</button>
+                                            </form>
+                                        </div>
+                                        <% } %>
                                 </div>
                             </div>
-
-                            <!-- Cột nội dung -->
-                            <div class="col-md-6">
-                                <h3 class="fw-semibold mb-3">
-                                    <%= product.name %>
-                                </h3>
-                                <h4 class="text-danger fw-bold mb-3">
-                                    <%= product.price.toLocaleString('vi-VN') %>₫
-                                </h4>
-                                <p>
-                                    <%= product.description %>
-                                </p>
-
-                                <form method="POST" action="/order/add-to-cart" class="product-action-form">
-                                    <input type="hidden" name="productId" value="<%= product.id %>">
-
-                                    <div class="action-row">
-                                        <!-- Nhóm số lượng -->
-                                        <div class="quantity-control">
-                                            <button type="button" class="qty-btn"
-                                                onclick="changeQuantity(-1)">−</button>
-
-                                            <input type="number" name="quantity" id="quantityInput" value="1" min="1"
-                                                class="qty-input" />
-                                            <button type="button" class="qty-btn" onclick="changeQuantity(1)">+</button>
-                                        </div>
-
-                                        <!-- Nút mua -->
-                                        <div class="button-group">
-                                            <button type="submit" class="btn-cart">🛒 Thêm vào giỏ</button>
-                                            <a href="#" onclick="buyNow()" class="btn-buy">⚡ Mua ngay</a>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
                         </div>
-                    </section>
-                    <% } else { %>
-                        <div class="container py-5">
-                            <h3 class="text-danger">❌ Không tìm thấy sản phẩm</h3>
-                            <p>Vui lòng kiểm tra lại đường dẫn hoặc quay lại <a href="/product">danh sách sản phẩm</a>.
-                            </p>
-                        </div>
-                        <% } %>
-
-                            <script>
-                                function changeQuantity(delta) {
-                                    const input = document.getElementById('quantityInput');
-                                    const currentValue = parseInt(input.value) || 1;
-                                    input.value = Math.max(1, currentValue + delta);
-                                }
-
-                                function buyNow() {
-                                    const form = document.querySelector('.product-action-form');
-                                    form.action = "/order/checkout";
-                                    form.submit();
-                                }
-                            </script>
-                            <!----------------------------------------------------------------------------------------->
-
+                    </div>
+                </div>
+                <!--== End Product Cart Area Wrapper ==-->
+                <!-- --------------------------------------------------------------------------------------------------------->
             </main>
-
-
             <!--== Start Footer Area Wrapper ==-->
             <footer class="footer-area">
                 <%- include('../shares/footer') %>
             </footer>
             <!--== End Footer Area Wrapper ==-->
-
-
     </div>
     <!--== Wrapper End ==-->
 
@@ -193,47 +203,42 @@
 </body>
 
 
-<script>
-    function changeQuantity(event, amount) {
-        event.preventDefault();
+<!-- Mirrored from htmldemo.net/elehaus/elehaus/about-us.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Jun 2024 08:39:29 GMT -->
 
-        const input = document.getElementById("quantityInput");
-        let value = parseInt(input.value);
-        if (isNaN(value)) value = 1;
+</html>
+</li>
+</ul>
+</nav>
+</div>
+<!-- End Mobile Menu Wrapper -->
+</div>
+</aside>
+<!--== Start Side Menu ==-->
 
-        value += amount;
-        if (value < 1) value = 1;
+</div>
+<!--== Wrapper End ==-->
 
-        input.value = value;
-    }
+<!-- JS Vendor, Plugins & Activation Script Files -->
 
-    function buyNow() {
-        const productId = "<%= product.id %>";
-        const quantity = document.getElementById("quantityInput").value;
-        window.location.href = `/checkout?productId=${productId}&quantity=${quantity}`;
-    }
-</script>
-<script>
-    const thumbSlider = new Swiper('.thumb-slider', {
-        spaceBetween: 10,
-        slidesPerView: 'auto',
-        freeMode: true,
-        watchSlidesProgress: true,
-    });
+<!-- Vendors JS -->
+<script src="/static/js/vendor/modernizr-3.11.7.min.js"></script>
+<script src="/static/js/vendor/jquery-3.6.0.min.js"></script>
+<script src="/static/js/vendor/jquery-migrate-3.3.2.min.js"></script>
+<script src="/static/js/vendor/bootstrap.bundle.min.js"></script>
 
-    const mainSlider = new Swiper('.main-slider', {
-        spaceBetween: 10,
-        loop: true,
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
-        thumbs: {
-            swiper: thumbSlider,
-        },
-    });
-</script>
+<!-- Plugins JS -->
+<script src="/static/js/plugins/swiper-bundle.min.js"></script>
+<script src="/static/js/plugins/fancybox.min.js"></script>
+<script src="/static/js/plugins/jquery.nice-select.min.js"></script>
+<script src="/static/js/plugins/jquery.countdown.min.js"></script>
+<script src="/static/js/plugins/isotope.pkgd.min.js"></script>
 
-<!-- Mirrored from htmldemo.net/elehaus/elehaus/shop-single-product-variable.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Jun 2024 08:39:21 GMT -->
+<!-- Custom Main JS -->
+<script src="/static/js/main.js"></script>
+
+</body>
+
+
+<!-- Mirrored from htmldemo.net/elehaus/elehaus/about-us.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Jun 2024 08:39:29 GMT -->
 
 </html>

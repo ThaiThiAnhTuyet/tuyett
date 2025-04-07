@@ -108,3 +108,13 @@ router.get("/history", async (req, res) => {
 });
 
 module.exports = router;
+
+// Nút thêm sản phẩm vào giỏ hàng
+// http://localhost:5000/api/order/add-to-cart
+// xem danh sách giỏ hàng
+// http://localhost:5000/api/order/cart
+// Xóa 1 sản phẩm trong giỏ hàng
+// http://localhost:5000/api/order/remove-from-cart?productId=67f2ef395a6ab1e81ef6001c
+// Nút bấm Thanh Toán
+// http://localhost:5000/api/order/checkout
+// xem lịch sử đơn hàng đã thanh toántoán
