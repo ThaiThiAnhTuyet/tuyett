@@ -153,9 +153,11 @@
 
                                 function buyNow() {
                                     const form = document.querySelector('.product-action-form');
-                                    form.action = "/order/checkout";
+                                    form.action = "../order/buy-now";
+                                    form.method = "POST";
                                     form.submit();
                                 }
+
                             </script>
                             <!----------------------------------------------------------------------------------------->
 
@@ -192,46 +194,7 @@
 </body>
 
 
-<script>
-    function changeQuantity(event, amount) {
-        event.preventDefault();
 
-        const input = document.getElementById("quantityInput");
-        let value = parseInt(input.value);
-        if (isNaN(value)) value = 1;
-
-        value += amount;
-        if (value < 1) value = 1;
-
-        input.value = value;
-    }
-
-    function buyNow() {
-        const productId = "<%= product.id %>";
-        const quantity = document.getElementById("quantityInput").value;
-        window.location.href = `/checkout?productId=${productId}&quantity=${quantity}`;
-    }
-</script>
-<script>
-    const thumbSlider = new Swiper('.thumb-slider', {
-        spaceBetween: 10,
-        slidesPerView: 'auto',
-        freeMode: true,
-        watchSlidesProgress: true,
-    });
-
-    const mainSlider = new Swiper('.main-slider', {
-        spaceBetween: 10,
-        loop: true,
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
-        thumbs: {
-            swiper: thumbSlider,
-        },
-    });
-</script>
 
 <!-- Mirrored from htmldemo.net/elehaus/elehaus/shop-single-product-variable.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Jun 2024 08:39:21 GMT -->
 

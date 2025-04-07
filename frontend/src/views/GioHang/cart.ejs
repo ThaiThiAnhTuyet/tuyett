@@ -37,7 +37,6 @@
     <div class="wrapper">
         <%- include('../partical/header') %>
             <main class="main-content">
-
                 <!--== Start Page Header Area Wrapper ==-->
                 <div class="page-header-area">
                     <div class="container">
@@ -71,12 +70,12 @@
                                         <table class="cart-table">
                                             <thead>
                                                 <tr>
-                                                    <th class="width-thumbnail"></th>
+                                                    <th class="width-thumbnail">Image</th>
                                                     <th class="width-name">Product</th>
                                                     <th class="width-price">Price</th>
                                                     <th class="width-quantity">Quantity</th>
                                                     <th class="width-subtotal">Subtotal</th>
-                                                    <th class="width-remove"></th>
+                                                    <th class="width-remove">Remove</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -86,9 +85,9 @@
                                                             <td class="product-thumbnail">
                                                                 <a href="/productdetails/<%= item.product.id %>">
                                                                     <img class="w-100"
-                                                                        src="<%= item.product.images[0] || '/static/images/default-product.jpg' %>"
-                                                                        alt="<%= item.product.name %>" width="96"
-                                                                        height="96">
+                                                                        src="<%= item.product?.images?.[0] || '/static/images/default-product.jpg' %>"
+                                                                        alt="<%= item.product?.name || 'No Name' %>"
+                                                                        width="96" height="96">
                                                                 </a>
                                                             </td>
                                                             <td class="product-name">
@@ -103,18 +102,8 @@
                                                                     <%= item.product.price.toLocaleString('vi-VN') %>₫
                                                                 </span>
                                                             </td>
-                                                            <td class="cart-quality">
-                                                                <form method="POST" action="/order/update-cart">
-                                                                    <input type="hidden" name="productId"
-                                                                        value="<%= item.product.id %>">
-                                                                    <div class="product-details-quality">
-                                                                        <input type="number" name="quantity"
-                                                                            value="<%= item.quantity %>" min="1"
-                                                                            class="form-control">
-                                                                        <button type="submit"
-                                                                            class="btn btn-primary btn-sm mt-2">Update</button>
-                                                                    </div>
-                                                                </form>
+                                                            <td class="product-quantity">
+                                                                <%= item.quantity %>
                                                             </td>
                                                             <td class="product-total">
                                                                 <span>
@@ -123,13 +112,10 @@
                                                                 </span>
                                                             </td>
                                                             <td class="product-remove">
-                                                                <form method="POST" action="/order/remove-from-cart">
-                                                                    <input type="hidden" name="productId"
-                                                                        value="<%= item.product.id %>">
-                                                                    <button type="submit" class="btn btn-danger btn-sm">
-                                                                        <i class="fa fa-trash-o"></i>
-                                                                    </button>
-                                                                </form>
+                                                                <button class="btn btn-danger btn-sm"
+                                                                    onclick="removeFromCart('<%= item.product._id %>')">
+                                                                    <i class="fa fa-trash-o"></i>
+                                                                </button>
                                                             </td>
                                                         </tr>
                                                         <% }) %>
@@ -194,42 +180,31 @@
 
     <!-- Custom Main JS -->
     <script src="/static/js/main.js"></script>
+    <script>
+        function removeFromCart(productId) {
+            if (confirm("Bạn có chắc muốn xóa sản phẩm này khỏi giỏ hàng?")) {
+                fetch(`/order/remove-from-cart?productId=${productId}`, {
+                    method: "DELETE",
+                    headers: {
+                        'Authorization': 'Bearer <%= token %>',
+                        'Content-Type': 'application/json'
+                    }
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            return response.json().then(data => { throw new Error(data.message || "Lỗi xoá sản phẩm"); });
+                        }
+                        location.reload(); // reload lại trang để cập nhật
+                    })
+                    .catch(err => alert("❌ " + err.message));
+            }
+        }
+    </script>
 
-</body>
+    <script>
+        console.log("Token được render:", "<%= token %>");
+    </script>
 
-
-<!-- Mirrored from htmldemo.net/elehaus/elehaus/about-us.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Jun 2024 08:39:29 GMT -->
-
-</html>
-</li>
-</ul>
-</nav>
-</div>
-<!-- End Mobile Menu Wrapper -->
-</div>
-</aside>
-<!--== Start Side Menu ==-->
-
-</div>
-<!--== Wrapper End ==-->
-
-<!-- JS Vendor, Plugins & Activation Script Files -->
-
-<!-- Vendors JS -->
-<script src="/static/js/vendor/modernizr-3.11.7.min.js"></script>
-<script src="/static/js/vendor/jquery-3.6.0.min.js"></script>
-<script src="/static/js/vendor/jquery-migrate-3.3.2.min.js"></script>
-<script src="/static/js/vendor/bootstrap.bundle.min.js"></script>
-
-<!-- Plugins JS -->
-<script src="/static/js/plugins/swiper-bundle.min.js"></script>
-<script src="/static/js/plugins/fancybox.min.js"></script>
-<script src="/static/js/plugins/jquery.nice-select.min.js"></script>
-<script src="/static/js/plugins/jquery.countdown.min.js"></script>
-<script src="/static/js/plugins/isotope.pkgd.min.js"></script>
-
-<!-- Custom Main JS -->
-<script src="/static/js/main.js"></script>
 
 </body>
 

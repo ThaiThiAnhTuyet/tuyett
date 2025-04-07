@@ -7,7 +7,10 @@ const OrderModel = require("../models/OrderModel");
 // Route thêm sản phẩm vào giỏ hàng
 router.post("/add-to-cart", async (req, res) => {
     try {
-        const { productId, quantity } = req.body;
+        const { productId } = req.body;
+        const quantity = parseInt(req.body.quantity, 10) || 1;
+        console.log("🛒 Add to cart:", { productId, quantity, raw: req.body.quantity, type: typeof req.body.quantity });
+
         const token = req.session.token;
 
         const response = await axios.post(
@@ -27,11 +30,15 @@ router.post("/add-to-cart", async (req, res) => {
     }
 });
 
-// Route hiển thị giỏ hàng
-router.get("/cart", async (req, res) => {
-    try {
-        const token = req.session.token;
 
+router.get("/cart", async (req, res) => {
+    const token = req.session.token;
+
+    if (!token) {
+        return res.redirect("/login"); // Nếu chưa đăng nhập thì chuyển về trang đăng nhập
+    }
+
+    try {
         const response = await axios.get("http://localhost:5000/api/order/cart", {
             headers: {
                 Authorization: `Bearer ${token}`
@@ -39,52 +46,68 @@ router.get("/cart", async (req, res) => {
         });
 
         const cartItems = response.data.cart.map(item => new CartModel(item));
-        res.render("GioHang/cart", { cartItems, user: req.session.user });
+        res.render("GioHang/cart", {
+            cartItems,
+            user: req.session.user,
+            token: req.session.token
+        });
+
     } catch (err) {
         console.error("❌ Lỗi lấy giỏ hàng:", err.message);
-        res.render("GioHang/cart", { cartItems: [], error: "Không thể hiển thị giỏ hàng." });
+        res.render("GioHang/cart", { cartItems: [], error: "Không thể hiển thị giỏ hàng.", user: req.session.user });
     }
 });
 
-//cập nhật số lượng sản phẩm trong giỏ hàng
-router.post("/update-cart", async (req, res) => {
-    try {
-        const { productId, quantity } = req.body;
-        const token = req.session.token;
+router.post("/buy-now", async (req, res) => {
+    const { productId } = req.body;
+    const quantity = parseInt(req.body.quantity, 10) || 1;
+    const token = req.session.token;
 
-        const response = await axios.post(
-            "http://localhost:5000/api/order/update-cart",
+    if (!token) return res.redirect("/login");
+
+    try {
+        await axios.post(
+            "http://localhost:5000/api/order/add-to-cart",
             { productId, quantity },
-            {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            }
+            { headers: { Authorization: `Bearer ${token}` } }
         );
-
-        res.redirect("/order/cart");
+        const response = await axios.post(
+            "http://localhost:5000/api/order/checkout",
+            {},
+            { headers: { Authorization: `Bearer ${token}` } }
+        );
+        const order = new OrderModel(response.data.order);
+        res.render("GioHang/checkoutResult", {
+            success: true,
+            order,
+            user: req.session.user
+        });
     } catch (err) {
-        console.error("❌ Lỗi cập nhật giỏ hàng:", err.message);
-        res.redirect("/order/cart");
+        console.error("❌ Lỗi mua ngay:", err.message);
+        res.render("GioHang/checkoutResult", {
+            success: false,
+            errorMessage: "Không thể mua ngay lúc này.",
+            user: req.session.user
+        });
     }
 });
 
-// Route xóa sản phẩm khỏi giỏ hàng
-router.post("/remove-from-cart", async (req, res) => {
-    try {
-        const { productId } = req.body;
-        const token = req.session.token;
+router.delete("/remove-from-cart", async (req, res) => {
+    const token = req.session.token;
+    const productId = req.query.productId;
 
+    if (!token) return res.status(401).json({ message: "Chưa đăng nhập" });
+
+    try {
         await axios.delete(`http://localhost:5000/api/order/remove-from-cart?productId=${productId}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
         });
-
-        res.redirect("/order/cart");
+        res.status(200).json({ message: "✅ Đã xóa khỏi giỏ hàng" });
     } catch (err) {
-        console.error("❌ Lỗi xóa khỏi giỏ hàng:", err.message);
-        res.redirect("/order/cart");
+        console.error("❌ Lỗi xoá sản phẩm:", err.message);
+        res.status(500).json({ message: "Lỗi xoá sản phẩm khỏi giỏ hàng" });
     }
 });
 
@@ -104,18 +127,30 @@ router.post("/checkout", async (req, res) => {
         );
 
         const order = new OrderModel(response.data.order);
-        res.render("GioHang/checkout", { order, user: req.session.user });
+        res.render("GioHang/checkoutResult", {
+            success: true,
+            order,
+            user: req.session.user
+        });
     } catch (err) {
         console.error("❌ Lỗi thanh toán:", err.message);
-        res.render("GioHang/checkout", { error: "Không thể thực hiện thanh toán." });
+        res.render("GioHang/checkoutResult", {
+            success: false,
+            errorMessage: "Không thể thực hiện thanh toán.",
+            user: req.session.user
+        });
     }
 });
 
 // Route xem lịch sử đơn hàng
 router.get("/history", async (req, res) => {
-    try {
-        const token = req.session.token;
+    const token = req.session.token;
 
+    if (!token) {
+        return res.redirect("/login"); // ✅ Chặn nếu chưa đăng nhập
+    }
+
+    try {
         const response = await axios.get("http://localhost:5000/api/order/history", {
             headers: {
                 Authorization: `Bearer ${token}`
@@ -126,7 +161,7 @@ router.get("/history", async (req, res) => {
         res.render("GioHang/history", { orders, user: req.session.user });
     } catch (err) {
         console.error("❌ Lỗi xem lịch sử đơn hàng:", err.message);
-        res.render("GioHang/history", { orders: [], error: "Không thể hiển thị lịch sử đơn hàng." });
+        res.render("GioHang/history", { orders: [], error: "Không thể hiển thị lịch sử đơn hàng.", user: req.session.user });
     }
 });
 
