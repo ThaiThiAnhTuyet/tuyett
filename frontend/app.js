@@ -40,3 +40,4 @@ const server = app.listen(3000, function() {
 });
 
 // tuyet 
+// tao cac route va controller
