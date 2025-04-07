@@ -9,3 +9,5 @@ class BlogModel {
     }
 }
 module.exports = BlogModel;
+
+// tao bang va model tuong ung
