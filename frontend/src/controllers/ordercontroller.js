@@ -46,6 +46,29 @@ router.get("/cart", async (req, res) => {
     }
 });
 
+//cập nhật số lượng sản phẩm trong giỏ hàng
+router.post("/update-cart", async (req, res) => {
+    try {
+        const { productId, quantity } = req.body;
+        const token = req.session.token;
+
+        const response = await axios.post(
+            "http://localhost:5000/api/order/update-cart",
+            { productId, quantity },
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+        );
+
+        res.redirect("/order/cart");
+    } catch (err) {
+        console.error("❌ Lỗi cập nhật giỏ hàng:", err.message);
+        res.redirect("/order/cart");
+    }
+});
+
 // Route xóa sản phẩm khỏi giỏ hàng
 router.post("/remove-from-cart", async (req, res) => {
     try {

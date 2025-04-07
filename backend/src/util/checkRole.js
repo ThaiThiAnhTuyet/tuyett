@@ -14,6 +14,7 @@ function checkRole(requiredRole) {
         next();
     };
 }
+
 function checkMultiRole(allowedRoles = []) {
     return (req, res, next) => {
         if (!req.userData || !req.userData.user) {
