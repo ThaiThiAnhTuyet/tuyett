@@ -32,7 +32,7 @@ router.get("/cart", verifyToken, checkMultiRole(["admin", "user"]), async (req, 
 });
 
 // ✅ Xoá khỏi giỏ
-router.delete("/remove-from-cart", checkMultiRole(["admin", "user"]), async (req, res) => {
+router.delete("/remove-from-cart", verifyToken, checkMultiRole(["admin", "user"]), async (req, res) => {
     try {
         const userId = req.userData.user._id;
         const { productId } = req.query;

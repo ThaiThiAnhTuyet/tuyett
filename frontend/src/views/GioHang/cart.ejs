@@ -1,32 +1,239 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="no-js" lang="zxx">
+
+
+<!-- Mirrored from htmldemo.net/elehaus/elehaus/shop-single-product-variable.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Jun 2024 08:39:18 GMT -->
 
 <head>
-    <meta charset="UTF-8">
-    <title>Giỏ hàng</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>5 CON BÁO</title>
+    <meta name="robots" content="noindex, follow" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/static/images/favicon.png">
+
+    <!-- CSS (Font, Vendor, Icon, Plugins & Style CSS files) -->
+
+    <!-- Font CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;display=swap"
+        rel="stylesheet">
+
+    <!-- Vendor CSS (Bootstrap & Icon Font) -->
+    <link rel="stylesheet" href="/static/css/vendor/bootstrap.min.css">
+
+    <!-- Plugins CSS (All Plugins Files) -->
+    <link rel="stylesheet" href="/static/css/plugins/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/static/css/plugins/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/css/plugins/simple-line-icons.css">
+    <link rel="stylesheet" href="/static/css/plugins/fancybox.min.css">
+    <link rel="stylesheet" href="/static/css/plugins/nice-select.css">
+
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/productdetail.css">
+
 </head>
 
 <body>
-    <h1>Giỏ hàng của bạn</h1>
-    <% if (error) { %>
-        <p style="color: red;">
-            <%= error %>
-        </p>
-        <% } else if (cartItems.length===0) { %>
-            <p>Giỏ hàng của bạn đang trống.</p>
-            <% } else { %>
-                <ul>
-                    <% cartItems.forEach(item=> { %>
-                        <li>
-                            <p>Sản phẩm: <%= item.product.name %>
+
+    <!--== Wrapper Start ==-->
+    <div class="wrapper">
+
+        <%- include('../partical/header'); %>
+            <main class="main-content">
+
+                <!--== Start Page Header Area Wrapper ==-->
+                <div class="page-header-area">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="page-header-content">
+                                    <h2 class="page-header-title">Products</h2>
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="index.html">Home //</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Single Product</li>
+                                    </ol>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="page-header-thumb">
+                                    <img src="/static/images/photos/page-title.png" alt="Image-HasTech" width="546"
+                                        height="281">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!----------------------------------------------------------------------------------------->
+                <% if (product) { %>
+                    <section class="product-detail-area section-space">
+                        <div class="container">
+                            <div class="row">
+                                <!-- Swiper ảnh lớn -->
+                                <div class="swiper main-slider border rounded p-2 mb-3 bg-light" style="height: 400px;">
+                                    <div class="swiper-wrapper">
+                                        <% product.images.forEach(function(img) { %>
+                                            <div class="swiper-slide d-flex align-items-center justify-content-center"
+                                                style="height: 100%;">
+                                                <img src="<%= img %>" class="h-100" style="object-fit: contain;" />
+                                            </div>
+                                            <% }) %>
+                                    </div>
+                                </div>
+
+                                <!-- Swiper ảnh nhỏ (thumbnail) -->
+                                <div class="swiper thumb-slider" style="padding-top: 10px;">
+                                    <div class="swiper-wrapper">
+                                        <% product.images.forEach(function(img) { %>
+                                            <div class="swiper-slide"
+                                                style="width: 70px; height: 70px; cursor: pointer;">
+                                                <img src="<%= img %>" class="w-100 h-100 img-thumbnail"
+                                                    style="object-fit: cover;" />
+                                            </div>
+                                            <% }) %>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Cột nội dung -->
+                            <div class="col-md-6">
+                                <h3 class="fw-semibold mb-3">
+                                    <%= product.name %>
+                                </h3>
+                                <h4 class="text-danger fw-bold mb-3">
+                                    <%= product.price.toLocaleString('vi-VN') %>₫
+                                </h4>
+                                <p>
+                                    <%= product.description %>
+                                </p>
+
+                                <form method="POST" action="/order/add-to-cart" class="product-action-form">
+                                    <input type="hidden" name="productId" value="<%= product.id %>">
+
+                                    <div class="action-row">
+                                        <!-- Nhóm số lượng -->
+                                        <div class="quantity-control">
+                                            <button type="button" class="qty-btn"
+                                                onclick="changeQuantity(-1)">−</button>
+
+                                            <input type="number" name="quantity" id="quantityInput" value="1" min="1"
+                                                class="qty-input" />
+                                            <button type="button" class="qty-btn" onclick="changeQuantity(1)">+</button>
+                                        </div>
+
+                                        <!-- Nút mua -->
+                                        <div class="button-group">
+                                            <button type="submit" class="btn-cart">🛒 Thêm vào giỏ</button>
+                                            <a href="#" onclick="buyNow()" class="btn-buy">⚡ Mua ngay</a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+                    <% } else { %>
+                        <div class="container py-5">
+                            <h3 class="text-danger">❌ Không tìm thấy sản phẩm</h3>
+                            <p>Vui lòng kiểm tra lại đường dẫn hoặc quay lại <a href="/product">danh sách sản phẩm</a>.
                             </p>
-                            <p>Số lượng: <%= item.quantity %>
-                            </p>
-                        </li>
-                        <% }); %>
-                </ul>
-                <% } %>
-                    <a href="/order/checkout">Thanh toán</a>
+                        </div>
+                        <% } %>
+
+                            <script>
+                                function changeQuantity(delta) {
+                                    const input = document.getElementById('quantityInput');
+                                    const currentValue = parseInt(input.value) || 1;
+                                    input.value = Math.max(1, currentValue + delta);
+                                }
+
+                                function buyNow() {
+                                    const form = document.querySelector('.product-action-form');
+                                    form.action = "/order/checkout";
+                                    form.submit();
+                                }
+                            </script>
+                            <!----------------------------------------------------------------------------------------->
+
+            </main>
+
+
+            <!--== Start Footer Area Wrapper ==-->
+            <footer class="footer-area">
+                <%- include('../shares/footer') %>
+            </footer>
+            <!--== End Footer Area Wrapper ==-->
+
+
+    </div>
+    <!--== Wrapper End ==-->
+
+    <!-- JS Vendor, Plugins & Activation Script Files -->
+
+    <!-- Vendors JS -->
+    <script src="/static/js/vendor/modernizr-3.11.7.min.js"></script>
+    <script src="/static/js/vendor/jquery-3.6.0.min.js"></script>
+    <script src="/static/js/vendor/jquery-migrate-3.3.2.min.js"></script>
+    <script src="/static/js/vendor/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugins JS -->
+    <script src="/static/js/plugins/swiper-bundle.min.js"></script>
+    <script src="/static/js/plugins/fancybox.min.js"></script>
+    <script src="/static/js/plugins/jquery.nice-select.min.js"></script>
+    <script src="/static/js/plugins/jquery.countdown.min.js"></script>
+    <script src="/static/js/plugins/isotope.pkgd.min.js"></script>
+
+    <!-- Custom Main JS -->
+    <script src="/static/js/main.js"></script>
+
 </body>
+
+
+<script>
+    function changeQuantity(event, amount) {
+        event.preventDefault();
+
+        const input = document.getElementById("quantityInput");
+        let value = parseInt(input.value);
+        if (isNaN(value)) value = 1;
+
+        value += amount;
+        if (value < 1) value = 1;
+
+        input.value = value;
+    }
+
+    function buyNow() {
+        const productId = "<%= product.id %>";
+        const quantity = document.getElementById("quantityInput").value;
+        window.location.href = `/checkout?productId=${productId}&quantity=${quantity}`;
+    }
+</script>
+<script>
+    const thumbSlider = new Swiper('.thumb-slider', {
+        spaceBetween: 10,
+        slidesPerView: 'auto',
+        freeMode: true,
+        watchSlidesProgress: true,
+    });
+
+    const mainSlider = new Swiper('.main-slider', {
+        spaceBetween: 10,
+        loop: true,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        thumbs: {
+            swiper: thumbSlider,
+        },
+    });
+</script>
+
+<!-- Mirrored from htmldemo.net/elehaus/elehaus/shop-single-product-variable.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Jun 2024 08:39:21 GMT -->
 
 </html>

@@ -4,27 +4,8 @@ const axios = require("axios");
 const CartModel = require("../models/CartModel");
 const OrderModel = require("../models/OrderModel");
 
-// Middleware kiểm tra người dùng đã đăng nhập
-function ensureAuthenticated(req, res, next) {
-    const token = req.session.token;
-    if (!token) {
-        return res.redirect("/login"); // Chuyển hướng đến trang đăng nhập nếu chưa đăng nhập
-    }
-    next();
-}
-
-// Middleware kiểm tra vai trò user
-router.use((req, res, next) => {
-    if (req.session.role === "admin") {
-        return res.status(403).render("unauthorized", {
-            message: "Trang này chỉ dành cho người dùng."
-        });
-    }
-    next();
-});
-
-// Route thêm vào giỏ hàng
-router.post("/add-to-cart", ensureAuthenticated, async (req, res) => {
+// Route thêm sản phẩm vào giỏ hàng
+router.post("/add-to-cart", async (req, res) => {
     try {
         const { productId, quantity } = req.body;
         const token = req.session.token;
@@ -39,16 +20,15 @@ router.post("/add-to-cart", ensureAuthenticated, async (req, res) => {
             }
         );
 
-        const cartItem = new CartModel(response.data);
-        res.render("GioHang/add-to-cart", { cartItem, user: req.session.user });
+        res.redirect("/order/cart"); // Chuyển hướng đến giỏ hàng sau khi thêm
     } catch (err) {
         console.error("❌ Lỗi thêm vào giỏ hàng:", err.message);
-        res.render("GioHang/add-to-cart", { error: "Không thể thêm vào giỏ hàng." });
+        res.redirect("/productdetails/" + req.body.productId);
     }
 });
 
-// Route lấy giỏ hàng
-router.get("/cart", ensureAuthenticated, async (req, res) => {
+// Route hiển thị giỏ hàng
+router.get("/cart", async (req, res) => {
     try {
         const token = req.session.token;
 
@@ -66,10 +46,10 @@ router.get("/cart", ensureAuthenticated, async (req, res) => {
     }
 });
 
-// Route xoá khỏi giỏ hàng
-router.delete("/remove-from-cart", ensureAuthenticated, async (req, res) => {
+// Route xóa sản phẩm khỏi giỏ hàng
+router.post("/remove-from-cart", async (req, res) => {
     try {
-        const { productId } = req.query;
+        const { productId } = req.body;
         const token = req.session.token;
 
         await axios.delete(`http://localhost:5000/api/order/remove-from-cart?productId=${productId}`, {
@@ -80,13 +60,13 @@ router.delete("/remove-from-cart", ensureAuthenticated, async (req, res) => {
 
         res.redirect("/order/cart");
     } catch (err) {
-        console.error("❌ Lỗi xoá khỏi giỏ hàng:", err.message);
+        console.error("❌ Lỗi xóa khỏi giỏ hàng:", err.message);
         res.redirect("/order/cart");
     }
 });
 
 // Route thanh toán
-router.post("/checkout", ensureAuthenticated, async (req, res) => {
+router.post("/checkout", async (req, res) => {
     try {
         const token = req.session.token;
 
@@ -109,7 +89,7 @@ router.post("/checkout", ensureAuthenticated, async (req, res) => {
 });
 
 // Route xem lịch sử đơn hàng
-router.get("/history", ensureAuthenticated, async (req, res) => {
+router.get("/history", async (req, res) => {
     try {
         const token = req.session.token;
 
